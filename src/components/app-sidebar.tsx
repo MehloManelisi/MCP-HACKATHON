@@ -1,6 +1,6 @@
 "use client"
 
-import { Home, Users, Activity, Calendar, Settings, FileText, LogOut, Heart } from "lucide-react"
+import { Home, Users, Activity, Calendar, Settings, FileText, LogOut, Heart, MessageSquare } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
@@ -43,6 +43,11 @@ const menuItems = [
     title: "Reports",
     icon: FileText,
     href: "/reports",
+  },
+  {
+    title: "Chatbot",
+    icon: MessageSquare,
+    href: "/chatbot",
   },
 ]
 
