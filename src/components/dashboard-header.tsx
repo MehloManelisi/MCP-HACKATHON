@@ -2,9 +2,22 @@
 
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
+<<<<<<< Updated upstream
+import { Button } from "../components/ui/button.js"
+import { Input } from "../components/ui/input.js"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../components/ui/dropdown-menu.js"
+=======
 import { Button } from "../components/ui/button"
   import { Input } from "../components/ui/input"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../components/ui/dropdown-menu"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../components/ui/dropdown-menu"
+>>>>>>> Stashed changes
 import { Heart, Search, Bell, User, LogOut, Settings } from "lucide-react"
 
 export function DashboardHeader() {
