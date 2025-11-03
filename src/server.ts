@@ -108,55 +108,60 @@ server.tool("create-random-user", "Create a random user with fake data", {
     destructiveHint: false,
     idempotentHint: false,
     openWorldHint: true,
-}, async () => {
+  }, async () => {
     const res = await server.server.request(
-        {
-            method: "sampling/createMessage",
-            params: {
-                messages: [
-                    {
-                        role: "user",
-                        content: {
-                            type: "text",
-                            text: "Generate a random user with fake data. The user should have a realistic name, email, address, and phone number. Return this data as JSON object with no other text or formatter so it can be used with JSON.parse."
-                        },
-                    },
-                ],
-                maxTokens: 1024,
+      {
+        method: "sampling/createMessage",
+        params: {
+          messages: [
+            {
+              role: "user",
+              content: {
+                type: "text",
+                text: "Generate a random user with fake data. The user should have a realistic name, email, address, and phone number. Return ONLY valid JSON with no markdown or formatting.",
+              },
             },
+          ],
+          maxTokens: 1024,
         },
-        CreateMessageResultSchema
-    )
+      },
+      CreateMessageResultSchema
+    );
+  
     if (res.content.type !== "text") {
-        return {
-            content: [{ type: "text", text: "Failed to generate fake user" }]
-        }
+      return { content: [{ type: "text", text: "Failed to generate fake user" }] };
     }
-
+  
     try {
-        const fakeUser = JSON.parse(
-            res.content.text
-                .trim()
-                .replace(/^```json/, "")
-                .replace(/```$/, "")
-                .trim()
-        )
-        const id = await createUser(fakeUser)
-        return {
-            content: [{ type: "text", text: `User ${id} created successfully`}]
-        }
-    } catch {
-        return {
-            content: [
-                {
-                    type: "text",
-                    text: "Failed to parse fake user data"
-                }
-            ]
-        }
+      const cleaned = res.content.text
+        .trim()
+        .replace(/^```(?:json)?/i, "")
+        .replace(/```$/i, "")
+        .trim();
+  
+      const fakeUser = JSON.parse(cleaned);
+      
+      // Transform nested address to flat string if needed
+      const transformedUser = {
+        name: fakeUser.name,
+        email: fakeUser.email,
+        address: typeof fakeUser.address === 'string' 
+          ? fakeUser.address 
+          : fakeUser.address.street || '',
+        phone: fakeUser.phone
+      };
+      
+      const id = await createUser(transformedUser);
+  
+      return { content: [{ type: "text", text: `User ${id} created successfully` }] };
+    } catch (err) {
+      console.error("Failed to parse fake user data:", err);
+      return {
+        content: [{ type: "text", text: "Failed to parse fake user data" }],
+      };
     }
-}
-)
+  });
+  
 
 server.prompt("generate-fake-user", "Generate a fake user based on a given name", {
     name: z.string(),

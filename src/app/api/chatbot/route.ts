@@ -1,4 +1,4 @@
-import { type NextRequest, NextResponse } from "next/server"
+import { type NextRequest, NextResponse } from "next/server.js"
 import { Client } from "@modelcontextprotocol/sdk/client/index.js"
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js"
 import { Anthropic } from "@anthropic-ai/sdk"
@@ -33,7 +33,7 @@ async function getMcpClient(): Promise<Client> {
 
 export async function POST(request: NextRequest) {
   try {
-    const { message } = await request.json()
+    const { message, conversationHistory } = await request.json()
 
     if (!message) {
       return NextResponse.json(
@@ -50,31 +50,21 @@ export async function POST(request: NextRequest) {
       mcp.listTools(),
     ])
 
-    // Fetch relevant resources based on context
-    const resourceData: Record<string, any> = {}
-    
-    // If user asks about users, load user data
-    if (message.toLowerCase().includes('user')) {
-      try {
-        const usersRes = await mcp.readResource({ uri: "users://all" })
-        const usersData = JSON.parse(usersRes.contents[0].text as string)
-        resourceData.users = usersData
-      } catch (error) {
-        console.error("Error fetching users:", error)
-      }
-    }
+    // Convert MCP tools to Anthropic tools format
+    const anthropicTools = tools.map(tool => ({
+      name: tool.name,
+      description: tool.description,
+      input_schema: tool.inputSchema
+    }))
 
     // Prepare context for Claude
     const systemContext = `You are a helpful assistant with access to a database and various tools.
+You can directly use tools to help the user with their requests.
+
 Available resources:
 ${resources.map(r => `- ${r.name}: ${r.description}`).join('\n')}
 
-Available tools:
-${tools.map(t => `- ${t.name}: ${t.description}`).join('\n')}
-
-${Object.keys(resourceData).length > 0 ? `\nCurrent data:\n${JSON.stringify(resourceData, null, 2)}` : ''}
-
-Help the user with their questions and suggest tools/resources when relevant.`
+When the user requests to create a user or perform database operations, use the appropriate tools.`
 
     // Initialize Anthropic client
     const apiKey = process.env.ANTHROPIC_API_KEY
@@ -87,27 +77,76 @@ Help the user with their questions and suggest tools/resources when relevant.`
 
     const anthropic = new Anthropic({ apiKey })
 
-    // Call Claude with the MCP context
-    const response = await anthropic.messages.create({
-      model: "claude-sonnet-4-20250514",
-      max_tokens: 2048,
-      system: systemContext,
-      messages: [
-        {
-          role: "user",
-          content: message,
-        },
-      ],
-    })
+    // Build conversation history or start fresh
+    const messages: any[] = conversationHistory || []
+    messages.push({ role: "user", content: message })
 
-    const responseText = response.content[0]?.type === "text" 
-      ? response.content[0].text 
-      : "I apologize, but I couldn't generate a response."
+    let finalResponse = ""
+    let responseContent: any[] = []
+
+    // Handle tool calls in a loop
+    while (true) {
+      const response = await anthropic.messages.create({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 2048,
+        system: systemContext,
+        tools: anthropicTools,
+        messages,
+      })
+
+      for (const content of response.content) {
+        if (content.type === "text") {
+          finalResponse += content.text + "\n"
+        } else if (content.type === "tool_use") {
+          // Execute tool call
+          try {
+            const toolResult = await mcp.callTool({
+              name: content.name,
+              arguments: content.input as Record<string, unknown>,
+            })
+            
+            const resultText = (toolResult.content as any)[0]?.type === "text" 
+              ? (toolResult.content as any)[0].text 
+              : JSON.stringify(toolResult.content)
+            
+            // Add tool call and result to conversation
+            messages.push({ role: "assistant", content: [content] })
+            messages.push({ 
+              role: "user", 
+              content: [{ 
+                type: "tool_result", 
+                tool_use_id: content.id, 
+                content: resultText 
+              }] 
+            })
+            
+            responseContent.push({ type: "tool_use", name: content.name, result: resultText })
+          } catch (error) {
+            console.error(`[Chatbot] Error executing tool ${content.name}:`, error)
+            messages.push({ role: "assistant", content: [content] })
+            messages.push({ 
+              role: "user", 
+              content: [{ 
+                type: "tool_result", 
+                tool_use_id: content.id, 
+                content: `Error: ${error instanceof Error ? error.message : 'Unknown error'}`
+              }] 
+            })
+          }
+        }
+      }
+
+      // If Claude stopped for a reason other than tool use, we're done
+      if (response.stop_reason !== "tool_use") {
+        break
+      }
+    }
 
     return NextResponse.json({
-      response: responseText,
+      response: finalResponse.trim() || "I apologize, but I couldn't generate a response.",
       resources: resources.map(r => ({ name: r.name, description: r.description })),
       tools: tools.map(t => ({ name: t.name, description: t.description })),
+      toolCalls: responseContent,
     })
   } catch (error) {
     console.error("[Chatbot] Error:", error)

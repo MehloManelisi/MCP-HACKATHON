@@ -1,12 +1,12 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Textarea } from "@/components/ui/textarea"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../components/ui/card"
+import { Button } from "../../components/ui/button"
+import { Textarea } from "../../components/ui/textarea"
 import { Send, Bot, User, Loader2, Database, Wrench } from "lucide-react"
-import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar"
-import { AppSidebar } from "@/components/app-sidebar"
+import { SidebarProvider, SidebarInset } from "../../components/ui/sidebar"
+import { AppSidebar } from "../../components/app-sidebar"
 
 interface Message {
   role: "user" | "assistant"
@@ -26,6 +26,7 @@ export default function ChatbotPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [capabilities, setCapabilities] = useState<Capabilities | null>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const conversationHistoryRef = useRef<any[]>([])
 
   useEffect(() => {
     // Load available capabilities on mount
@@ -59,7 +60,10 @@ export default function ChatbotPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ message: input }),
+        body: JSON.stringify({ 
+          message: input,
+          conversationHistory: conversationHistoryRef.current 
+        }),
       })
 
       const data = await response.json()
@@ -71,6 +75,10 @@ export default function ChatbotPage() {
           timestamp: new Date(),
         }
         setMessages((prev) => [...prev, assistantMessage])
+        
+        // Update conversation history for context
+        conversationHistoryRef.current.push({ role: "user", content: input })
+        conversationHistoryRef.current.push({ role: "assistant", content: data.response })
       } else {
         const errorMessage: Message = {
           role: "assistant",
@@ -204,7 +212,7 @@ export default function ChatbotPage() {
                 <div className="flex gap-2">
                   <Textarea
                     value={input}
-                    onChange={(e) => setInput(e.target.value)}
+                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setInput(e.target.value)}
                     onKeyDown={handleKeyDown}
                     placeholder="Type your message here..."
                     disabled={isLoading}
