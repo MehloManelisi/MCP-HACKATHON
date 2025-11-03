@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "name": "Alice Ndlovu",
+    "email": "alice.ndlovu@example.com",
+    "address": "123 Main Street, Johannesburg",
+    "phone": "+27 71 234 5678"
+  },
+  {
+    "id": 2,
+    "name": "Brian Mthembu",
+    "email": "brian.mthembu@example.com",
+    "address": "45 Church Road, Cape Town",
+    "phone": "+27 72 345 6789"
+  },
+  {
+    "id": 3,
+    "name": "Lerato Khumalo",
+    "email": "lerato.khumalo@example.com",
+    "address": "89 Oxford Street, Durban",
+    "phone": "+27 73 456 7890"
+  },
+  {
+    "id": 4,
+    "name": "fdth",
+    "email": "hdr",
+    "address": "drh",
+    "phone": "rdeh"
+  },
+  {
+    "id": 5,
+    "name": "Khaya",
+    "email": "khaya@gmail.com",
+    "address": "55",
+    "phone": "0732212661"
+  },
+  {
+    "id": 6,
+    "name": "Lina",
+    "email": "Lina@gmail.com",
+    "address": "55",
+    "phone": "0732212661"
+  },
+  {
+    "id": 7,
+    "name": "Manez",
+    "email": "manez@gmail.com",
+    "address": "55",
+    "phone": "0732212661"
+  },
+  {
+    "id": 8,
+    "name": "fjy",
+    "email": "fxyj",
+    "address": "fyj",
+    "phone": "477"
+  },
+  {
+    "id": 9,
+    "name": "tgyi",
+    "email": "tygz",
+    "address": "zy",
+    "phone": "ykz"
+  },
+  {
+    "id": 10,
+    "name": "Olwemihla",
+    "email": "olwesaba@gmail.com",
+    "address": "Mputhi A/A",
+    "phone": "dsdsrh"
+  }
+]
