@@ -4,8 +4,17 @@ import { Badge } from "../../components/ui/badge"
 import { Calendar, Clock, User, Plus, Phone } from "lucide-react"
 import { mockPatients } from "@/lib/mock-data"
 
+interface Appointment {
+  id: string
+  patient_id: string
+  date: string
+  time: string
+  reason: string
+  status: "scheduled" | "completed" | "cancelled"
+}
+
 // Mock appointments data
-const mockAppointments = [
+const mockAppointments: Appointment[] = [
   {
     id: "1",
     patient_id: mockPatients[0].id,

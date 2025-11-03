@@ -1,19 +1,18 @@
-import { DashboardHeader } from "../../../components/dashboard-header.js"
-import { PatientProfile } from "../../../components/patient-profile.js"
-import { PatientVisits } from "../../../components/patient-visits.js"
-import { AISummaryCard } from "../../../components/ai-summary-card.js"
-import { mockPatients, mockVisits } from "../../../lib/mock-data.js"
+import { DashboardHeader } from "../../../components/dashboard-header"
+import { PatientProfile } from "../../../components/patient-profile"
+import { PatientVisits } from "../../../components/patient-visits"
+import { AISummaryCard } from "../../../components/ai-summary-card"
+import { mockPatients, mockVisits } from "../../../lib/mock-data"
 import { notFound } from "next/navigation"
 
-export default async function PatientPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params
-  const patient = mockPatients.find((p) => p.id === id)
+export default function PatientPage({ params }: { params: { id: string } }) {
+  const patient = mockPatients.find((p) => p.id === params.id)
 
   if (!patient) {
     notFound()
   }
 
-  const patientVisits = mockVisits.filter((v) => v.patient_id === id)
+  const patientVisits = mockVisits.filter((v) => v.patient_id === params.id)
 
   return (
     <div className="min-h-screen bg-surface">
