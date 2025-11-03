@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
+    "target": "ES2022",
     "lib": [
       "dom",
       "dom.iterable",
@@ -11,9 +11,11 @@
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
+    "module": "Node16",
+    "moduleResolution": "Node16",
     "resolveJsonModule": true,
+    "outDir": "./build",
+    "rootDir": "./src",
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
@@ -25,9 +27,6 @@
     "paths": {
       "@/*": [
         "./src/*"
-      ],
-      "@/components/ui/*": [
-        "./components/ui/*"
       ]
     }
   },
@@ -35,11 +34,10 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts",
-    ".next\\dev/types/**/*.ts",
-    ".next\\dev/types/**/*.ts"
+    ".next/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "build"
   ]
 }
