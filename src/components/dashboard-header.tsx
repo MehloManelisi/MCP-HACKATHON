@@ -2,32 +2,26 @@
 
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
-<<<<<<< Updated upstream
-import { Button } from "../components/ui/button.js"
-import { Input } from "../components/ui/input.js"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../components/ui/dropdown-menu.js"
-=======
 import { Button } from "../components/ui/button"
-  import { Input } from "../components/ui/input"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "../components/ui/dropdown-menu"
->>>>>>> Stashed changes
+import { Input } from "../components/ui/input"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../components/ui/dropdown-menu"
 import { Heart, Search, Bell, User, LogOut, Settings } from "lucide-react"
+import type { UserSession } from "@/lib/types"
 
 export function DashboardHeader() {
   const router = useRouter()
-  const [user, setUser] = useState<any>(null)
+  const [user, setUser] = useState<UserSession | null>(null)
 
   useEffect(() => {
     const userData = localStorage.getItem("afyalink_user")
     if (userData) {
-      setUser(JSON.parse(userData))
+      try {
+        const parsedUser = JSON.parse(userData) as UserSession
+        setUser(parsedUser)
+      } catch (error) {
+        console.error("Failed to parse user data:", error)
+        router.push("/login")
+      }
     } else {
       router.push("/login")
     }
