@@ -49,7 +49,7 @@ const PatientAvatar = memo(function PatientAvatar({ patient }: { patient: User }
 function PatientsPage() {
   const [searchQuery, setSearchQuery] = useState("")
   const [currentPage, setCurrentPage] = useState(1)
-  const itemsPerPage = 5
+  const itemsPerPage = 6
   
   // Get all patients sorted by ID (highest = most recent)
   const allPatients = useMemo(() => {
@@ -265,7 +265,7 @@ function PatientsPage() {
       {/* Pagination */}
       {filteredPatients.length > 0 && totalPages > 1 && (
         <Card className="p-4 bg-gradient-to-br from-zinc-800/95 to-zinc-900/95 backdrop-blur-xl rounded-3xl border border-orange-500/40 shadow-2xl shadow-orange-500/10">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col items-center gap-4">
             <div className="text-sm text-white/70">
               Showing {startIndex + 1} to {Math.min(endIndex, filteredPatients.length)} of {filteredPatients.length} patients
             </div>
