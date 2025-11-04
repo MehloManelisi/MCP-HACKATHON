@@ -1,5 +1,7 @@
 # AfyaLink - Healthcare Records System
 
+##Team Members: Brian Tandikhaya Mbana, Manelisi Mehlo, Zenathi Mbenya, Mafongosi Konke
+
 AfyaLink is an AI-powered health records management system designed specifically for rural African clinics. Built for the African Model Context Protocol (MCP) Hackathon.
 
 ## Features
