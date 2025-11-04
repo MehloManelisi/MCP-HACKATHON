@@ -47,22 +47,22 @@ export function Footer() {
                                 {/* Social Media Icons */}
                                 <div className="flex space-x-3 sm:space-x-4 relative z-20">
                                     <div 
-                                        className="w-8 h-8 sm:w-10 sm:h-10 border border-white rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-colors cursor-pointer"
+                                        className="w-8 h-8 sm:w-10 sm:h-10 border border-orange-500 rounded-full flex items-center justify-center hover:bg-orange-500 hover:border-orange-600 transition-colors cursor-pointer"
                                         onClick={() => window.open('https://www.youtube.com/@afyalink', '_blank')}
                                     >
-                                        <Youtube className="h-4 w-4 sm:h-5 sm:w-5" />
+                                        <Youtube className="h-4 w-4 sm:h-5 sm:w-5 text-orange-500 hover:text-white transition-colors" />
                                     </div>
                                     <div 
-                                        className="w-8 h-8 sm:w-10 sm:h-10 border border-white rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-colors cursor-pointer"
+                                        className="w-8 h-8 sm:w-10 sm:h-10 border border-orange-500 rounded-full flex items-center justify-center hover:bg-orange-500 hover:border-orange-600 transition-colors cursor-pointer"
                                         onClick={() => window.open('https://www.facebook.com/afyalink', '_blank')}
                                     >
-                                        <Facebook className="h-4 w-4 sm:h-5 sm:w-5" />
+                                        <Facebook className="h-4 w-4 sm:h-5 sm:w-5 text-orange-500 hover:text-white transition-colors" />
                                     </div>
                                     <div 
-                                        className="w-8 h-8 sm:w-10 sm:h-10 border border-white rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-colors cursor-pointer"
+                                        className="w-8 h-8 sm:w-10 sm:h-10 border border-orange-500 rounded-full flex items-center justify-center hover:bg-orange-500 hover:border-orange-600 transition-colors cursor-pointer"
                                         onClick={() => window.open('https://www.instagram.com/afyalink', '_blank')}
                                     >
-                                        <Instagram className="h-4 w-4 sm:h-5 sm:w-5" />
+                                        <Instagram className="h-4 w-4 sm:h-5 sm:w-5 text-orange-500 hover:text-white transition-colors" />
                                     </div>
                                 </div>
                             </div>
