@@ -51,9 +51,9 @@ function PatientsPage() {
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 6
   
-  // Get all patients sorted by ID (highest = most recent)
+  // Get all patients sorted by ID (lowest = oldest first)
   const allPatients = useMemo(() => {
-    return (usersData as User[]).sort((a, b) => b.id - a.id)
+    return (usersData as User[]).sort((a, b) => a.id - b.id)
   }, [])
   
   const filteredPatients = useMemo(() => {

@@ -372,5 +372,98 @@
     },
     "lastVisit": "2025-11-15",
     "nextAppointment": "2025-11-27"
+  },
+  {
+    "id": 14,
+    "name": "Sarah Williams",
+    "email": "sarah.williams@email.com",
+    "address": "15 Maple Street, Cape Town, Western Cape 8001",
+    "phone": "+27 21 555 0123",
+    "dateOfBirth": "1987-03-15",
+    "gender": "Female",
+    "bloodType": "A+",
+    "hivStatus": "Negative",
+    "medicalConditions": [
+      "Hypertension",
+      "Type 2 Diabetes"
+    ],
+    "allergies": [
+      "Penicillin",
+      "Shellfish"
+    ],
+    "medications": [
+      "Metformin 500mg twice daily",
+      "Lisinopril 10mg once daily",
+      "Aspirin 81mg daily"
+    ],
+    "emergencyContact": {
+      "name": "Michael Williams",
+      "relationship": "Husband",
+      "phone": "+27 21 555 0124"
+    },
+    "lastVisit": "2024-01-15",
+    "nextAppointment": "2024-04-15"
+  },
+  {
+    "id": 15,
+    "name": "Thabo Mthembu",
+    "email": "thabo.mthembu@email.co.za",
+    "address": "123 Main Street, Johannesburg, Gauteng, 2001",
+    "phone": "+27812345678",
+    "dateOfBirth": "1985-03-15",
+    "gender": "Male",
+    "bloodType": "O+",
+    "hivStatus": "Negative",
+    "medicalConditions": [
+      "Hypertension",
+      "Type 2 Diabetes"
+    ],
+    "allergies": [
+      "Penicillin",
+      "Shellfish"
+    ],
+    "medications": [
+      "Metformin 500mg twice daily",
+      "Lisinopril 10mg once daily",
+      "Aspirin 81mg once daily"
+    ],
+    "emergencyContact": {
+      "name": "Sarah Mthembu",
+      "relationship": "Wife",
+      "phone": "+27823456789"
+    },
+    "lastVisit": "2024-11-15",
+    "nextAppointment": "2024-12-20"
+  },
+  {
+    "id": 16,
+    "name": "Sarah Johnson",
+    "email": "sarah.johnson@email.com",
+    "address": "123 Main Street, Cape Town, Western Cape, 7925",
+    "phone": "+27823456789",
+    "dateOfBirth": "1985-03-15",
+    "gender": "Female",
+    "bloodType": "O+",
+    "hivStatus": "Negative",
+    "medicalConditions": [
+      "Hypertension",
+      "Type 2 Diabetes"
+    ],
+    "allergies": [
+      "Penicillin",
+      "Shellfish"
+    ],
+    "medications": [
+      "Metformin 850mg twice daily",
+      "Lisinopril 10mg once daily",
+      "Atorvastatin 20mg once daily"
+    ],
+    "emergencyContact": {
+      "name": "Michael Johnson",
+      "relationship": "Husband",
+      "phone": "+27821234567"
+    },
+    "lastVisit": "2024-11-15",
+    "nextAppointment": "2024-12-20"
   }
 ]

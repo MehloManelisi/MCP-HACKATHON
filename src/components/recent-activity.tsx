@@ -32,7 +32,7 @@ export function RecentActivity({ recentlyAddedPatients }: RecentActivityProps) {
     <Card className="p-6 bg-gradient-to-br from-zinc-800/95 to-zinc-900/95 backdrop-blur-xl rounded-3xl border border-orange-500/40 shadow-2xl shadow-orange-500/10">
       <div className="flex items-center gap-2 mb-6">
         <Clock className="w-5 h-5 text-orange-400" />
-        <h2 className="text-xl font-bold text-orange-400">Recently Added Patients</h2>
+        <h2 className="text-xl font-bold text-orange-400">Recent Activities</h2>
       </div>
 
       <div className="space-y-4">

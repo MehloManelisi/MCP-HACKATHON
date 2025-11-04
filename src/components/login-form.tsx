@@ -87,20 +87,20 @@ export function LoginForm() {
         <div className="absolute -inset-0.5 bg-zinc-900 rounded-full"></div>
         {/* Glowing effect */}
         <div className="absolute -inset-2 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full opacity-30 blur-sm animate-ping"></div>
-        <Button
-          type="submit"
-          disabled={isLoading}
+      <Button
+        type="submit"
+        disabled={isLoading}
           className="relative w-full h-11 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-full z-10 transform hover:scale-105 transition-all duration-300 animate-pulse hover:animate-none disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-        >
-          {isLoading ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Signing in...
-            </>
-          ) : (
-            "Sign in"
-          )}
-        </Button>
+      >
+        {isLoading ? (
+          <>
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            Signing in...
+          </>
+        ) : (
+          "Sign in"
+        )}
+      </Button>
       </div>
 
       <div className="text-center text-sm text-white/70">
