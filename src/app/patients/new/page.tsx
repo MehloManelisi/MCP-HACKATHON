@@ -10,6 +10,8 @@ import { Label } from "../../../components/ui/label"
 import { Textarea } from "../../../components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../components/ui/select"
 import { UserPlus } from "lucide-react"
+import { PageWrapper } from "@/components/page-wrapper"
+import { AnimatedButtonWrapper } from "@/components/animated-button-wrapper"
 
 export default function NewPatientPage() {
   const router = useRouter()
@@ -23,7 +25,8 @@ export default function NewPatientPage() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <PageWrapper title="New Patient" description="Add a new patient to the system">
+    <div className="space-y-6">
       <div className="flex items-center gap-3">
         <div className="w-12 h-12 rounded-3xl bg-[#10b981]/10 flex items-center justify-center">
           <UserPlus className="w-6 h-6 text-[#10b981]" />
@@ -149,13 +152,15 @@ export default function NewPatientPage() {
 
           {/* Form Actions */}
           <div className="flex gap-4 pt-4">
-            <Button
-              type="submit"
-              disabled={isSubmitting}
-              className="bg-[#10b981] hover:bg-[#059669] flex-1 rounded-3xl"
-            >
-              {isSubmitting ? "Registering..." : "Register Patient"}
-            </Button>
+            <AnimatedButtonWrapper className="flex-1">
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="relative w-full bg-orange-500 hover:bg-orange-600 text-white rounded-full z-10 transform hover:scale-105 transition-all duration-300 animate-pulse hover:animate-none font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+              >
+                {isSubmitting ? "Registering..." : "Register Patient"}
+              </Button>
+            </AnimatedButtonWrapper>
             <Button
               type="button"
               variant="outline"
@@ -169,5 +174,6 @@ export default function NewPatientPage() {
         </form>
       </Card>
     </div>
+    </PageWrapper>
   )
 }

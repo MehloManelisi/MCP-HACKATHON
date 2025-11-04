@@ -6,6 +6,7 @@ import { Button } from "../components/ui/button"
 import { Badge } from "../components/ui/badge"
 import type { Visit } from "../lib/types"
 import { Plus, Calendar, Activity, Pill, FileText, ChevronDown, ChevronUp } from "lucide-react"
+import { AnimatedButtonWrapper } from "@/components/animated-button-wrapper"
 import {
   Dialog,
   DialogContent,
@@ -50,10 +51,12 @@ export function PatientVisits({ visits, patientId }: PatientVisitsProps) {
         </div>
         <Dialog>
           <DialogTrigger asChild>
-            <Button className="bg-[#10b981] hover:bg-[#059669] text-white">
-              <Plus className="w-4 h-4 mr-2" />
-              New Visit
-            </Button>
+            <AnimatedButtonWrapper>
+              <Button className="relative bg-orange-500 hover:bg-orange-600 text-white rounded-full z-10 transform hover:scale-105 transition-all duration-300 animate-pulse hover:animate-none font-semibold">
+                <Plus className="w-4 h-4 mr-2" />
+                New Visit
+              </Button>
+            </AnimatedButtonWrapper>
           </DialogTrigger>
           <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>

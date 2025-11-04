@@ -6,14 +6,13 @@ import { Textarea } from "../../components/ui/textarea"
 import { Badge } from "../../components/ui/badge"
 import { User, Building2, Bell, Shield, Database } from "lucide-react"
 import { mockClinic, mockUser } from "@/lib/mock-data"
+import { PageWrapper } from "@/components/page-wrapper"
+import { AnimatedButtonWrapper } from "@/components/animated-button-wrapper"
 
 export default function SettingsPage() {
   return (
-    <div className="p-6 space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold text-foreground">Settings</h1>
-        <p className="text-muted-foreground mt-1">Manage your clinic and account settings</p>
-      </div>
+    <PageWrapper title="Settings" description="Manage your clinic and account settings">
+    <div className="space-y-6">
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <Card className="p-6 rounded-3xl">
@@ -39,7 +38,11 @@ export default function SettingsPage() {
               <Label>Role</Label>
               <Badge className="mt-2 rounded-3xl">{mockUser.role}</Badge>
             </div>
-            <Button className="w-full bg-[#10b981] hover:bg-[#059669] rounded-3xl">Update Profile</Button>
+            <AnimatedButtonWrapper className="w-full">
+              <Button className="relative w-full bg-orange-500 hover:bg-orange-600 text-white rounded-full z-10 transform hover:scale-105 transition-all duration-300 animate-pulse hover:animate-none font-semibold">
+                Update Profile
+              </Button>
+            </AnimatedButtonWrapper>
           </div>
         </Card>
 
@@ -66,7 +69,11 @@ export default function SettingsPage() {
               <Label htmlFor="phone">Contact Phone</Label>
               <Input id="phone" defaultValue={mockClinic.contact_phone} className="rounded-3xl mt-2" />
             </div>
-            <Button className="w-full bg-[#f97316] hover:bg-[#ea580c] rounded-3xl">Update Clinic</Button>
+            <AnimatedButtonWrapper className="w-full">
+              <Button className="relative w-full bg-orange-500 hover:bg-orange-600 text-white rounded-full z-10 transform hover:scale-105 transition-all duration-300 animate-pulse hover:animate-none font-semibold">
+                Update Clinic
+              </Button>
+            </AnimatedButtonWrapper>
           </div>
         </Card>
 
@@ -130,7 +137,11 @@ export default function SettingsPage() {
               <Label htmlFor="confirmPassword">Confirm Password</Label>
               <Input id="confirmPassword" type="password" className="rounded-3xl mt-2" />
             </div>
-            <Button className="w-full bg-purple-500 hover:bg-purple-600 rounded-3xl">Change Password</Button>
+            <AnimatedButtonWrapper className="w-full">
+              <Button className="relative w-full bg-orange-500 hover:bg-orange-600 text-white rounded-full z-10 transform hover:scale-105 transition-all duration-300 animate-pulse hover:animate-none font-semibold">
+                Change Password
+              </Button>
+            </AnimatedButtonWrapper>
           </div>
         </Card>
 
@@ -163,5 +174,6 @@ export default function SettingsPage() {
         </Card>
       </div>
     </div>
+    </PageWrapper>
   )
 }

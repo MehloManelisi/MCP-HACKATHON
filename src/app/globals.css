@@ -147,9 +147,18 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    height: 100%;
+    width: 100%;
+    min-height: 100vh;
+  }
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
   }
 }
 
@@ -173,4 +182,17 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: #9ca3af;
+}
+
+/* Sidebar background override to match header */
+[data-sidebar="sidebar"] {
+  background: rgb(24 24 27 / 0.95) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+@supports (backdrop-filter: blur(8px)) {
+  [data-sidebar="sidebar"] {
+    background: rgb(24 24 27 / 0.6) !important;
+  }
 }

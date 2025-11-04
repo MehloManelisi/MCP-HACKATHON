@@ -17,10 +17,23 @@ export function LoginForm() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
 
+  const validatePractitionerId = (id: string): boolean => {
+    // Format: AFY- followed by numbers (e.g., AFY-12345)
+    const pattern = /^AFY-\d+$/i
+    return pattern.test(id.trim())
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError("")
     setIsLoading(true)
+
+    // Validate Practitioner ID format
+    if (!validatePractitionerId(email)) {
+      setError("Invalid Practitioner ID format. Please use format: AFY-12345")
+      setIsLoading(false)
+      return
+    }
 
     // Simulate authentication (replace with real auth when Supabase is connected)
     setTimeout(() => {
@@ -36,7 +49,7 @@ export function LoginForm() {
         )
         router.push("/dashboard")
       } else {
-        setError("Please enter both email and password")
+        setError("Please enter both Practitioner ID and password")
         setIsLoading(false)
       }
     }, 1000)
@@ -52,25 +65,22 @@ export function LoginForm() {
       )}
 
       <div className="space-y-2">
-        <Label htmlFor="email">Email</Label>
+        <Label htmlFor="email" className="text-white">Practitioner's ID</Label>
         <Input
           id="email"
-          type="email"
-          placeholder="nurse@clinic.org"
+          type="text"
+          placeholder="AFY-12345"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          pattern="AFY-[0-9]+"
+          title="Format: AFY- followed by numbers (e.g., AFY-12345)"
           required
-          className="h-11"
+          className="h-11 text-white placeholder:text-white/50"
         />
       </div>
 
       <div className="space-y-2">
-        <div className="flex items-center justify-between">
-          <Label htmlFor="password">Password</Label>
-          <button type="button" className="text-sm text-[#10b981] hover:text-[#059669] font-medium">
-            Forgot password?
-          </button>
-        </div>
+        <Label htmlFor="password" className="text-white">Password</Label>
         <Input
           id="password"
           type="password"
@@ -78,24 +88,36 @@ export function LoginForm() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          className="h-11"
+          className="h-11 text-white placeholder:text-white/50"
         />
+        <div className="flex justify-end pt-1">
+          <button type="button" className="text-sm text-orange-500 hover:text-orange-400 font-medium transition-colors">
+            Forgot password?
+          </button>
+        </div>
       </div>
 
-      <Button
-        type="submit"
-        disabled={isLoading}
-        className="w-full h-11 bg-[#10b981] hover:bg-[#059669] text-white font-medium"
-      >
-        {isLoading ? (
-          <>
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            Signing in...
-          </>
-        ) : (
-          "Sign in"
-        )}
-      </Button>
+      <div className="relative inline-block w-full">
+        {/* Animated border with breathing effect */}
+        <div className="absolute -inset-1 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full animate-pulse"></div>
+        <div className="absolute -inset-0.5 bg-zinc-900 rounded-full"></div>
+        {/* Glowing effect */}
+        <div className="absolute -inset-2 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full opacity-30 blur-sm animate-ping"></div>
+        <Button
+          type="submit"
+          disabled={isLoading}
+          className="relative w-full h-11 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-full z-10 transform hover:scale-105 transition-all duration-300 animate-pulse hover:animate-none disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+        >
+          {isLoading ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Signing in...
+            </>
+          ) : (
+            "Sign in"
+          )}
+        </Button>
+      </div>
 
       <div className="text-center text-sm text-muted">Demo credentials: Any email and password</div>
     </form>
