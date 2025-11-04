@@ -3,6 +3,8 @@ import { Button } from "../../components/ui/button"
 import { Badge } from "../../components/ui/badge"
 import { Calendar, Clock, User, Plus, Phone } from "lucide-react"
 import { mockPatients } from "@/lib/mock-data"
+import { PageWrapper } from "@/components/page-wrapper"
+import { AnimatedButtonWrapper } from "@/components/animated-button-wrapper"
 
 interface Appointment {
   id: string
@@ -43,16 +45,15 @@ const mockAppointments: Appointment[] = [
 
 export default function AppointmentsPage() {
   return (
-    <div className="p-6 space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-foreground">Appointments</h1>
-          <p className="text-muted-foreground mt-1">Manage upcoming patient appointments</p>
-        </div>
-        <Button className="bg-[#10b981] hover:bg-[#059669] rounded-3xl">
-          <Plus className="w-4 h-4 mr-2" />
-          New Appointment
-        </Button>
+    <PageWrapper title="Appointments" description="Manage upcoming patient appointments">
+    <div className="space-y-6">
+      <div className="flex items-center justify-end">
+        <AnimatedButtonWrapper>
+          <Button className="relative bg-orange-500 hover:bg-orange-600 text-white rounded-full z-10 transform hover:scale-105 transition-all duration-300 animate-pulse hover:animate-none font-semibold">
+            <Plus className="w-4 h-4 mr-2" />
+            New Appointment
+          </Button>
+        </AnimatedButtonWrapper>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -146,5 +147,6 @@ export default function AppointmentsPage() {
         </div>
       </Card>
     </div>
+    </PageWrapper>
   )
 }
