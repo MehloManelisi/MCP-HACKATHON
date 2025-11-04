@@ -21,6 +21,11 @@ import {
 
 const menuItems = [
   {
+    title: "Chatbot",
+    icon: MessageSquare,
+    href: "/chatbot",
+  },
+  {
     title: "Dashboard",
     icon: Home,
     href: "/dashboard",
@@ -34,11 +39,6 @@ const menuItems = [
     title: "Reports",
     icon: FileText,
     href: "/reports",
-  },
-  {
-    title: "Chatbot",
-    icon: MessageSquare,
-    href: "/chatbot",
   },
 ]
 
@@ -75,6 +75,29 @@ export function AppSidebar() {
             <SidebarMenu className="space-y-2">
               {menuItems.map((item) => {
                 const isActive = pathname === item.href
+                const isChatbot = item.href === "/chatbot"
+                
+                if (isChatbot) {
+                  return (
+                    <SidebarMenuItem key={item.href}>
+                      <div className="relative w-full">
+                        <div className="absolute -inset-1 bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl animate-pulse"></div>
+                        <div className="absolute -inset-0.5 bg-zinc-900 rounded-2xl"></div>
+                        <div className="absolute -inset-2 bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl opacity-30 blur-sm animate-ping"></div>
+                        <SidebarMenuButton 
+                          asChild 
+                          className="relative w-full rounded-2xl bg-orange-500 hover:bg-orange-600 text-white font-semibold z-10 transform hover:scale-105 transition-all duration-300 animate-pulse hover:animate-none border-0 shadow-lg shadow-orange-500/20"
+                        >
+                          <Link href={item.href} className="gap-3 justify-center">
+                            <item.icon className="w-4 h-4" />
+                            <span>{item.title}</span>
+                          </Link>
+                        </SidebarMenuButton>
+                      </div>
+                    </SidebarMenuItem>
+                  )
+                }
+                
                 return (
                   <SidebarMenuItem key={item.href}>
                     <SidebarMenuButton 
