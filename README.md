@@ -1,4 +1,4 @@
-# AfyaLink - Rural Health Records System
+# AfyaLink - Healthcare Records System
 
 AfyaLink is an AI-powered health records management system designed specifically for rural African clinics. Built for the African Model Context Protocol (MCP) Hackathon.
 
@@ -14,17 +14,19 @@ AfyaLink is an AI-powered health records management system designed specifically
 ## Technology Stack
 
 - **Frontend**: Next.js 16, React 19, TypeScript
+- **Backend** Node.js, TypeScript
 - **Styling**: Tailwind CSS v4 with custom African-inspired color palette
 - **Database**: Supabase (PostgreSQL) - ready to connect
 - **AI Integration**: Model Context Protocol (MCP) pattern
-- **Authentication**: Supabase Auth (ready to integrate)
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js 18+ 
-- npm or yarn
+- Node.js 18+
+- npm i --force to install dependencies
+- npm run dev
+  
 
 ### Installation
 
@@ -41,47 +43,6 @@ AfyaLink is an AI-powered health records management system designed specifically
 
 4. Open [http://localhost:3000](http://localhost:3000)
 
-### Database Setup (Optional)
-
-The app includes SQL scripts in the `scripts/` folder:
-
-- `01-create-tables.sql` - Database schema
-- `02-seed-data.sql` - Sample data
-
-When ready to connect Supabase:
-1. Create a Supabase project
-2. Run the SQL scripts in the Supabase SQL editor
-3. Add environment variables (see below)
-
-### Environment Variables
-
-Create a `.env.local` file:
-
-\`\`\`env
-# Supabase (when ready to connect)
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-
-# MCP Server (optional)
-MCP_SERVER_URL=http://localhost:3001/mcp
-\`\`\`
-
-## Project Structure
-
-\`\`\`
-src/
-├── app/                    # Next.js app directory
-│   ├── dashboard/         # Main dashboard
-│   ├── patients/[id]/     # Patient detail pages
-│   ├── login/             # Authentication
-│   └── api/               # API routes
-├── components/            # React components
-├── lib/                   # Utilities and types
-│   ├── types.ts          # TypeScript interfaces
-│   ├── mock-data.ts      # Demo data
-│   └── mcp-client.ts     # MCP integration
-└── scripts/              # Database scripts
-\`\`\`
 
 ## MCP Integration
 
