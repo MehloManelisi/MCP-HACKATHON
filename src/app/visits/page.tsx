@@ -4,14 +4,12 @@ import { Input } from "../../components/ui/input"
 import { mockVisits, mockPatients } from "@/lib/mock-data"
 import { Search, Calendar, User, Activity, Thermometer } from "lucide-react"
 import Link from "next/link"
+import { PageWrapper } from "@/components/page-wrapper"
 
 export default function VisitsPage() {
   return (
-    <div className="p-6 space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold text-foreground">Visit History</h1>
-        <p className="text-muted-foreground mt-1">View all patient visits and medical records</p>
-      </div>
+    <PageWrapper title="Visit History" description="View all patient visits and medical records">
+    <div className="space-y-6">
 
       <Card className="p-6 rounded-3xl">
         <div className="relative mb-6">
@@ -89,5 +87,6 @@ export default function VisitsPage() {
         </div>
       </Card>
     </div>
+    </PageWrapper>
   )
 }
