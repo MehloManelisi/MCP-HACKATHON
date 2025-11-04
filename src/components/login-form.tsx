@@ -18,23 +18,10 @@ export function LoginForm() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
 
-  const validatePractitionerId = (id: string): boolean => {
-    // Format: AFY- followed by numbers (e.g., AFY-12345)
-    const pattern = /^AFY-\d+$/i
-    return pattern.test(id.trim())
-  }
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError("")
     setIsLoading(true)
-
-    // Validate Practitioner ID format
-    if (!validatePractitionerId(email)) {
-      setError("Invalid Practitioner ID format. Please use format: AFY-12345")
-      setIsLoading(false)
-      return
-    }
 
     // Simulate authentication (replace with real auth when Supabase is connected)
     setTimeout(() => {
@@ -73,9 +60,6 @@ export function LoginForm() {
           placeholder="AFY-12345"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          pattern="AFY-[0-9]+"
-          title="Format: AFY- followed by numbers (e.g., AFY-12345)"
-          required
           className="h-11 text-white placeholder:text-white/50"
         />
       </div>
@@ -88,7 +72,6 @@ export function LoginForm() {
           placeholder="Enter your password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          required
           className="h-11 text-white placeholder:text-white/50"
         />
         <div className="flex justify-end pt-1">
