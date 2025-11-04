@@ -317,27 +317,6 @@
     "nextAppointment": "2024-11-14"
   },
   {
-    "id": 12,
-    "name": "Sarah Johnson",
-    "email": "sarah.johnson@email.com",
-    "address": "123 Maple Street, Springfield, IL 62701",
-    "phone": "(555) 123-4567"
-  },
-  {
-    "id": 13,
-    "name": "Sarah Johnson",
-    "email": "sarah.johnson@email.com",
-    "address": "1234 Maple Street, Springfield, IL 62701",
-    "phone": "555-123-4567"
-  },
-  {
-    "id": 14,
-    "name": "Michael Rodriguez",
-    "email": "michael.rodriguez@email.com",
-    "address": "567 Oak Avenue, Austin, TX 78701",
-    "phone": "555-987-6543"
-  },
-  {
     "id": 15,
     "name": "Emily Chen",
     "email": "emily.chen@email.com",
