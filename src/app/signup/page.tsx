@@ -1,10 +1,22 @@
+"use client"
+
 import { SignupForm } from "@/components/signup-form"
-import { Shield, Zap, Globe, TrendingUp, Users, FileText, Network, Brain, Lock, Smartphone } from "lucide-react"
+import { Shield, Zap, Globe, TrendingUp, Users, FileText, Network, Brain, Lock, Smartphone, ArrowLeft } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 export default function SignupPage() {
   return (
-    <div className="min-h-screen flex bg-zinc-900">
+    <div className="min-h-screen flex bg-zinc-900 relative">
+      {/* Back Button */}
+      <Link 
+        href="/" 
+        className="absolute top-6 left-6 z-50 flex items-center gap-2 text-white/70 hover:text-white transition-colors group"
+      >
+        <div className="w-10 h-10 rounded-full bg-zinc-800/50 hover:bg-zinc-800 border border-zinc-700/50 hover:border-orange-500/50 flex items-center justify-center transition-all group-hover:scale-110">
+          <ArrowLeft className="w-5 h-5" />
+        </div>
+      </Link>
       {/* Left side - Branding with modern design */}
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
         {/* Video background */}
