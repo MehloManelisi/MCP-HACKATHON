@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 import { Card } from "../components/ui/card"
 import { Button } from "../components/ui/button"
 import { Input } from "../components/ui/input"
@@ -39,12 +40,14 @@ export function PatientList() {
           <h2 className="text-xl font-bold text-orange-400">Recently Added Patients</h2>
           <p className="text-sm text-white/70 mt-1">{filteredPatients.length} total patients</p>
         </div>
-        <AnimatedButtonWrapper>
-          <Button className="relative bg-orange-500 hover:bg-orange-600 text-white rounded-full z-10 transform hover:scale-105 transition-all duration-300 animate-pulse hover:animate-none font-semibold">
-            <Plus className="w-4 h-4 mr-2" />
-            Add Patient
-          </Button>
-        </AnimatedButtonWrapper>
+        <Link href="/patients/new">
+          <AnimatedButtonWrapper>
+            <Button className="relative bg-orange-500 hover:bg-orange-600 text-white rounded-full z-10 transform hover:scale-105 transition-all duration-300 animate-pulse hover:animate-none font-semibold">
+              <Plus className="w-4 h-4 mr-2" />
+              Add Patient
+            </Button>
+          </AnimatedButtonWrapper>
+        </Link>
       </div>
 
       <div className="flex gap-3 mb-6">

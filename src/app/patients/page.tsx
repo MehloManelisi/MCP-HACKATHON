@@ -11,7 +11,7 @@ import { calculateAge } from "@/lib/utils"
 import { PageWrapper } from "@/components/page-wrapper"
 import { AnimatedButtonWrapper } from "@/components/animated-button-wrapper"
 import Image from "next/image"
-import { useState } from "react"
+import { useState, memo, useMemo } from "react"
 
 // Curated list of 4 different Unsplash photos specifically of black/African people
 const africanPhotos = {
@@ -39,9 +39,9 @@ function getPatientPhotoUrl(patientId: string, gender: string) {
   return photos[photoIndex]
 }
 
-function PatientAvatar({ patient, index, gender }: { patient: { first_name: string; last_name: string; id: string }; index: number; gender: string }) {
+const PatientAvatar = memo(function PatientAvatar({ patient, index, gender }: { patient: { first_name: string; last_name: string; id: string }; index: number; gender: string }) {
   const [imageError, setImageError] = useState(false)
-  const avatarUrl = getPatientPhotoUrl(patient.id, gender)
+  const avatarUrl = useMemo(() => getPatientPhotoUrl(patient.id, gender), [patient.id, gender])
 
   if (imageError) {
     return (
@@ -67,9 +67,11 @@ function PatientAvatar({ patient, index, gender }: { patient: { first_name: stri
       />
     </div>
   )
-}
+})
 
-export default function PatientsPage() {
+function PatientsPage() {
+  const totalPatients = useMemo(() => mockPatients.length, [])
+
   return (
     <PageWrapper title="Patients" description="Manage and view all patient records">
     <div className="space-y-6">
@@ -77,7 +79,7 @@ export default function PatientsPage() {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-6">
           <div className="bg-gradient-to-br from-orange-500/20 to-orange-600/10 rounded-2xl p-4 border border-orange-500/30">
-            <div className="text-2xl font-bold text-white">{mockPatients.length}</div>
+            <div className="text-2xl font-bold text-white">{totalPatients}</div>
             <div className="text-xs text-white/70 uppercase tracking-wider">Total Patients</div>
           </div>
         </div>
@@ -186,3 +188,5 @@ export default function PatientsPage() {
     </PageWrapper>
   )
 }
+
+export default memo(PatientsPage)

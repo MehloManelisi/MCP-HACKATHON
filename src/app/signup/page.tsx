@@ -1,8 +1,8 @@
-import { LoginForm } from "@/components/login-form"
+import { SignupForm } from "@/components/signup-form"
 import { Shield, Zap, Globe, TrendingUp, Users, FileText, Network, Brain, Lock, Smartphone } from "lucide-react"
 import Image from "next/image"
 
-export default function LoginPage() {
+export default function SignupPage() {
   return (
     <div className="min-h-screen flex bg-zinc-900">
       {/* Left side - Branding with modern design */}
@@ -118,7 +118,7 @@ export default function LoginPage() {
         </div>
       </div>
 
-      {/* Right side - Login Form */}
+      {/* Right side - Sign Up Form */}
       <div className="flex-1 flex items-center justify-center p-8 bg-gradient-to-br from-zinc-900 to-zinc-800">
         <div className="w-full max-w-md">
           {/* Mobile logo */}
@@ -139,22 +139,23 @@ export default function LoginPage() {
             </div>
           </div>
 
-          {/* Login card */}
+          {/* Sign up card */}
           <div className="bg-gradient-to-br from-orange-500/20 via-black/40 to-black/60 backdrop-blur-xl rounded-2xl p-8 border border-orange-500/30 shadow-2xl shadow-orange-500/20">
             <div className="mb-8">
-              <h2 className="text-3xl font-bold text-white mb-2">Welcome back</h2>
-              <p className="text-white/70">Sign in to access your clinic dashboard</p>
+              <h2 className="text-3xl font-bold text-white mb-2">Create your account</h2>
+              <p className="text-white/70">Join AfyaLink and start managing patient records</p>
             </div>
 
-            <LoginForm />
+            <SignupForm />
           </div>
 
           {/* Footer text */}
           <p className="text-center text-sm text-white/50 mt-6">
-            Demo credentials: Any email and password
+            By signing up, you agree to our Terms of Service and Privacy Policy
           </p>
         </div>
       </div>
     </div>
   )
 }
+

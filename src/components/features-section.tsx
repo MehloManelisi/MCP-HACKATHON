@@ -17,7 +17,7 @@ type Feature = {
 
 export function FeaturesSection() {
     const [displayText, setDisplayText] = useState("")
-    const fullText = "Features"
+    const fullText = "How It Works"
     const [currentIndex, setCurrentIndex] = useState(0)
 
     useEffect(() => {
