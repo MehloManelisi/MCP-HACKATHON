@@ -113,7 +113,7 @@ export function PlatformsSection() {
                 {/* Call to Action Section */}
                 <div className="text-center">
                     <p className="text-base text-gray-400 font-semibold">
-                        Empowering Healthcare Workers in Africa
+                        Empowering Healthcare Facilities in Africa
                     </p>
                 </div>
             </div>

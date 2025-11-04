@@ -65,7 +65,7 @@ export function AboutSection() {
 						</p>
 
 						<p className="text-lg text-zinc-900 mb-8 leading-relaxed">
-							Built for clinics with limited resources, AfyaLink replaces paper-based files with a lightweight web app that allows healthcare workers to register, track, and share patient health records — using just a phone number or national ID.
+							Built for health facilities with limited resources, AfyaLink replaces paper-based files with a lightweight web app that allows healthcare workers to register, track, and share patient health records — using just a phone number, full name or national ID.
 						</p>
 
 						<div className="relative inline-block">

@@ -84,9 +84,33 @@ export function Navigation() {
         }
     }
 
+    const handleHowItWorksClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault()
+        setActiveSection("features-section")
+        if (pathname === "/") {
+            // Already on home page, scroll to section
+            const element = document.getElementById("features-section")
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth", block: "start" })
+            }
+        } else {
+            // Not on home page, navigate first then scroll
+            router.push("/")
+            // Wait for navigation, then scroll
+            setTimeout(() => {
+                const element = document.getElementById("features-section")
+                if (element) {
+                    element.scrollIntoView({ behavior: "smooth", block: "start" })
+                    setActiveSection("features-section")
+                }
+            }, 100)
+        }
+    }
+
     const navItems: NavItem[] = [
         { name: "HOME", href: "/" },
         { name: "FEATURES", href: "#platforms-section", onClick: handleFeaturesClick },
+        { name: "HOW IT WORKS", href: "#features-section", onClick: handleHowItWorksClick },
         { name: "ABOUT US", href: "#about-section", onClick: handleAboutUsClick },
     ]
 
@@ -113,7 +137,7 @@ export function Navigation() {
     useEffect(() => {
         if (pathname !== "/") return
 
-        const sections = ["platforms-section", "about-section"]
+        const sections = ["platforms-section", "features-section", "about-section"]
         const observerOptions = {
             root: null,
             rootMargin: "-20% 0px -70% 0px",

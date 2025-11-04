@@ -9,9 +9,18 @@
     "gender": "Female",
     "bloodType": "O+",
     "hivStatus": "Negative",
-    "medicalConditions": ["Hypertension", "Type 2 Diabetes"],
-    "allergies": ["Penicillin", "Sulfa drugs"],
-    "medications": ["Metformin 500mg twice daily", "Amlodipine 10mg daily"],
+    "medicalConditions": [
+      "Hypertension",
+      "Type 2 Diabetes"
+    ],
+    "allergies": [
+      "Penicillin",
+      "Sulfa drugs"
+    ],
+    "medications": [
+      "Metformin 500mg twice daily",
+      "Amlodipine 10mg daily"
+    ],
     "emergencyContact": {
       "name": "John Ndlovu",
       "relationship": "Spouse",
@@ -30,9 +39,16 @@
     "gender": "Male",
     "bloodType": "A+",
     "hivStatus": "Negative",
-    "medicalConditions": ["Asthma"],
-    "allergies": ["Dust mites", "Pollen"],
-    "medications": ["Salbutamol inhaler as needed"],
+    "medicalConditions": [
+      "Asthma"
+    ],
+    "allergies": [
+      "Dust mites",
+      "Pollen"
+    ],
+    "medications": [
+      "Salbutamol inhaler as needed"
+    ],
     "emergencyContact": {
       "name": "Sarah Mthembu",
       "relationship": "Sister",
@@ -51,9 +67,17 @@
     "gender": "Female",
     "bloodType": "B+",
     "hivStatus": "Positive - On Treatment",
-    "medicalConditions": ["HIV/AIDS", "Tuberculosis (completed treatment)"],
-    "allergies": ["None"],
-    "medications": ["TDF/3TC/EFV (HIV treatment)", "Isoniazid prophylaxis"],
+    "medicalConditions": [
+      "HIV/AIDS",
+      "Tuberculosis (completed treatment)"
+    ],
+    "allergies": [
+      "None"
+    ],
+    "medications": [
+      "TDF/3TC/EFV (HIV treatment)",
+      "Isoniazid prophylaxis"
+    ],
     "emergencyContact": {
       "name": "David Khumalo",
       "relationship": "Brother",
@@ -72,9 +96,17 @@
     "gender": "Male",
     "bloodType": "AB+",
     "hivStatus": "Negative",
-    "medicalConditions": ["Chronic Kidney Disease Stage 3", "Hypertension"],
-    "allergies": ["Iodine contrast"],
-    "medications": ["Lisinopril 20mg daily", "Furosemide 40mg daily"],
+    "medicalConditions": [
+      "Chronic Kidney Disease Stage 3",
+      "Hypertension"
+    ],
+    "allergies": [
+      "Iodine contrast"
+    ],
+    "medications": [
+      "Lisinopril 20mg daily",
+      "Furosemide 40mg daily"
+    ],
     "emergencyContact": {
       "name": "Grace Sibeko",
       "relationship": "Wife",
@@ -93,9 +125,16 @@
     "gender": "Male",
     "bloodType": "O-",
     "hivStatus": "Negative",
-    "medicalConditions": ["Bronchial Asthma"],
-    "allergies": ["Peanuts", "Shellfish"],
-    "medications": ["Budesonide inhaler twice daily"],
+    "medicalConditions": [
+      "Bronchial Asthma"
+    ],
+    "allergies": [
+      "Peanuts",
+      "Shellfish"
+    ],
+    "medications": [
+      "Budesonide inhaler twice daily"
+    ],
     "emergencyContact": {
       "name": "Nomsa Dlamini",
       "relationship": "Mother",
@@ -114,9 +153,17 @@
     "gender": "Female",
     "bloodType": "A-",
     "hivStatus": "Positive - On Treatment",
-    "medicalConditions": ["HIV/AIDS", "Anemia"],
-    "allergies": ["Codeine"],
-    "medications": ["TDF/3TC/DTG (HIV treatment)", "Iron supplements"],
+    "medicalConditions": [
+      "HIV/AIDS",
+      "Anemia"
+    ],
+    "allergies": [
+      "Codeine"
+    ],
+    "medications": [
+      "TDF/3TC/DTG (HIV treatment)",
+      "Iron supplements"
+    ],
     "emergencyContact": {
       "name": "Peter Mokoena",
       "relationship": "Husband",
@@ -135,9 +182,15 @@
     "gender": "Male",
     "bloodType": "B-",
     "hivStatus": "Negative",
-    "medicalConditions": ["Epilepsy"],
-    "allergies": ["None"],
-    "medications": ["Carbamazepine 400mg twice daily"],
+    "medicalConditions": [
+      "Epilepsy"
+    ],
+    "allergies": [
+      "None"
+    ],
+    "medications": [
+      "Carbamazepine 400mg twice daily"
+    ],
     "emergencyContact": {
       "name": "Zanele Zulu",
       "relationship": "Mother",
@@ -156,9 +209,17 @@
     "gender": "Female",
     "bloodType": "O+",
     "hivStatus": "Negative",
-    "medicalConditions": ["Hypothyroidism", "Depression"],
-    "allergies": ["Soy"],
-    "medications": ["Levothyroxine 75mcg daily", "Sertraline 50mg daily"],
+    "medicalConditions": [
+      "Hypothyroidism",
+      "Depression"
+    ],
+    "allergies": [
+      "Soy"
+    ],
+    "medications": [
+      "Levothyroxine 75mcg daily",
+      "Sertraline 50mg daily"
+    ],
     "emergencyContact": {
       "name": "Sipho Ngubane",
       "relationship": "Brother",
@@ -177,9 +238,17 @@
     "gender": "Male",
     "bloodType": "A+",
     "hivStatus": "Positive - On Treatment",
-    "medicalConditions": ["HIV/AIDS", "Hepatitis B"],
-    "allergies": ["None"],
-    "medications": ["TDF/3TC/EFV (HIV treatment)", "Entecavir for Hepatitis B"],
+    "medicalConditions": [
+      "HIV/AIDS",
+      "Hepatitis B"
+    ],
+    "allergies": [
+      "None"
+    ],
+    "medications": [
+      "TDF/3TC/EFV (HIV treatment)",
+      "Entecavir for Hepatitis B"
+    ],
     "emergencyContact": {
       "name": "Nomusa Cele",
       "relationship": "Wife",
@@ -198,9 +267,17 @@
     "gender": "Female",
     "bloodType": "AB-",
     "hivStatus": "Negative",
-    "medicalConditions": ["Migraine", "Anxiety"],
-    "allergies": ["Aspirin"],
-    "medications": ["Sumatriptan as needed", "Propranolol 40mg twice daily"],
+    "medicalConditions": [
+      "Migraine",
+      "Anxiety"
+    ],
+    "allergies": [
+      "Aspirin"
+    ],
+    "medications": [
+      "Sumatriptan as needed",
+      "Propranolol 40mg twice daily"
+    ],
     "emergencyContact": {
       "name": "Bongani Mabuza",
       "relationship": "Father",
@@ -219,9 +296,18 @@
     "gender": "Male",
     "bloodType": "O+",
     "hivStatus": "Negative",
-    "medicalConditions": ["Type 2 Diabetes", "Diabetic Neuropathy"],
-    "allergies": ["Sulfonamides"],
-    "medications": ["Insulin glargine 20 units at bedtime", "Metformin 1000mg twice daily", "Gabapentin 300mg three times daily"],
+    "medicalConditions": [
+      "Type 2 Diabetes",
+      "Diabetic Neuropathy"
+    ],
+    "allergies": [
+      "Sulfonamides"
+    ],
+    "medications": [
+      "Insulin glargine 20 units at bedtime",
+      "Metformin 1000mg twice daily",
+      "Gabapentin 300mg three times daily"
+    ],
     "emergencyContact": {
       "name": "Thandi Nxumalo",
       "relationship": "Wife",
@@ -229,5 +315,12 @@
     },
     "lastVisit": "2024-10-12",
     "nextAppointment": "2024-11-14"
+  },
+  {
+    "id": 12,
+    "name": "Sarah Johnson",
+    "email": "sarah.johnson@email.com",
+    "address": "123 Maple Street, Springfield, IL 62701",
+    "phone": "(555) 123-4567"
   }
 ]
