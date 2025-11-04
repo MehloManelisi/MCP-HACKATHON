@@ -4,6 +4,7 @@ import type React from "react"
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 import { Button } from "../components/ui/button"
 import { Input } from "../components/ui/input"
 import { Label } from "../components/ui/label"
@@ -119,7 +120,12 @@ export function LoginForm() {
         </Button>
       </div>
 
-      <div className="text-center text-sm text-muted">Demo credentials: Any email and password</div>
+      <div className="text-center text-sm text-white/70">
+        Don't have an account?{" "}
+        <Link href="/signup" className="text-orange-500 hover:text-orange-400 font-medium transition-colors">
+          Sign up
+        </Link>
+      </div>
     </form>
   )
 }

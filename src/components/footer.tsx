@@ -1,6 +1,6 @@
 "use client"
 
-import { Youtube, Facebook, Instagram, MessageCircle } from "lucide-react"
+import { Youtube, Facebook, Instagram } from "lucide-react"
 import Marquee from "@/components/Marquee"
 
 export function Footer() {
@@ -23,9 +23,9 @@ export function Footer() {
                             {/* Left Column - Address */}
                             <div className="text-center md:text-left flex flex-col justify-center items-center md:items-start">
                                 <p className="text-white text-sm sm:text-base md:text-lg">
-                                    4 Steward Drive, Baysville,<br />
-                                    East London,<br />
-                                    5241
+                                    East London, South Africa<br />
+                                    Serving Health Facilities<br />
+                                    Across Africa
                                 </p>
                             </div>
 
@@ -34,28 +34,34 @@ export function Footer() {
 
                             {/* Middle Column - Copyright & Contact */}
                             <div className="text-center space-y-1 sm:space-y-2">
-                                <p className="text-white text-xs sm:text-sm">© The Voice Lounge. All Rights Reserved.</p>
-                                <p className="text-white text-xs sm:text-sm">Info@thevoicelounge.co.za</p>
-                                <p className="text-white text-xs sm:text-sm">043 050 6570</p>
+                                <p className="text-white text-xs sm:text-sm">© 2024 AfyaLink. All Rights Reserved.</p>
+                                <p className="text-white text-xs sm:text-sm">contact@afyalink.org</p>
+                                <p className="text-white text-xs sm:text-sm">+254 700 000 000</p>
                             </div>
 
                             {/* Vertical Divider - Between Copyright and Social Media */}
                             <div className="hidden md:block absolute left-2/3 top-0 w-px h-full bg-gray-600 transform -translate-x-1/2"></div>
 
-                            {/* Right Column - Social Media & Chat */}
+                            {/* Right Column - Social Media */}
                             <div className="flex flex-col md:flex-row items-center justify-center space-y-3 sm:space-y-4 md:space-y-0 md:space-x-4 relative z-20">
                                 {/* Social Media Icons */}
                                 <div className="flex space-x-3 sm:space-x-4 relative z-20">
-                                    <div className="w-8 h-8 sm:w-10 sm:h-10 border border-white rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-colors cursor-pointer">
+                                    <div 
+                                        className="w-8 h-8 sm:w-10 sm:h-10 border border-white rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-colors cursor-pointer"
+                                        onClick={() => window.open('https://www.youtube.com/@afyalink', '_blank')}
+                                    >
                                         <Youtube className="h-4 w-4 sm:h-5 sm:w-5" />
                                     </div>
                                     <div 
                                         className="w-8 h-8 sm:w-10 sm:h-10 border border-white rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-colors cursor-pointer"
-                                        onClick={() => window.open('https://www.facebook.com/TheVoiceLoungeza', '_blank')}
+                                        onClick={() => window.open('https://www.facebook.com/afyalink', '_blank')}
                                     >
                                         <Facebook className="h-4 w-4 sm:h-5 sm:w-5" />
                                     </div>
-                                    <div className="w-8 h-8 sm:w-10 sm:h-10 border border-white rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-colors cursor-pointer">
+                                    <div 
+                                        className="w-8 h-8 sm:w-10 sm:h-10 border border-white rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-colors cursor-pointer"
+                                        onClick={() => window.open('https://www.instagram.com/afyalink', '_blank')}
+                                    >
                                         <Instagram className="h-4 w-4 sm:h-5 sm:w-5" />
                                     </div>
                                 </div>

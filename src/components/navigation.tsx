@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useMemo } from "react"
+import type React from "react"
 import { Menu, X, Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -13,10 +14,17 @@ type SearchItem = {
     subtitle?: string
 }
 
+type NavItem = {
+    name: string
+    href: string
+    onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void
+}
+
 export function Navigation() {
     const [isNavVisible, setIsNavVisible] = useState(true)
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [lastScrollY, setLastScrollY] = useState(0)
+    const [activeSection, setActiveSection] = useState<string>("")
     // const [searchQuery, setSearchQuery] = useState("")
     // const results = useMemo(() => {
     //     const q = searchQuery.trim().toLowerCase()
@@ -30,10 +38,56 @@ export function Navigation() {
     const pathname = usePathname()
     const router = useRouter()
 
-    const navItems = [
+    const handleFeaturesClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault()
+        setActiveSection("platforms-section")
+        if (pathname === "/") {
+            // Already on home page, scroll to section
+            const element = document.getElementById("platforms-section")
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth", block: "start" })
+            }
+        } else {
+            // Not on home page, navigate first then scroll
+            router.push("/")
+            // Wait for navigation, then scroll
+            setTimeout(() => {
+                const element = document.getElementById("platforms-section")
+                if (element) {
+                    element.scrollIntoView({ behavior: "smooth", block: "start" })
+                    setActiveSection("platforms-section")
+                }
+            }, 100)
+        }
+    }
+
+    const handleAboutUsClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault()
+        setActiveSection("about-section")
+        if (pathname === "/") {
+            // Already on home page, scroll to section
+            const element = document.getElementById("about-section")
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth", block: "start" })
+            }
+        } else {
+            // Not on home page, navigate first then scroll
+            router.push("/")
+            // Wait for navigation, then scroll
+            setTimeout(() => {
+                const element = document.getElementById("about-section")
+                if (element) {
+                    element.scrollIntoView({ behavior: "smooth", block: "start" })
+                    setActiveSection("about-section")
+                }
+            }, 100)
+        }
+    }
+
+    const navItems: NavItem[] = [
         { name: "HOME", href: "/" },
-        { name: "FEATURES", href: "/features" },
-        { name: "ABOUT US", href: "/about-us" },
+        { name: "FEATURES", href: "#platforms-section", onClick: handleFeaturesClick },
+        { name: "ABOUT US", href: "#about-section", onClick: handleAboutUsClick },
     ]
 
     useEffect(() => {
@@ -54,6 +108,59 @@ export function Navigation() {
         window.addEventListener('scroll', handleScroll, { passive: true })
         return () => window.removeEventListener('scroll', handleScroll)
     }, [lastScrollY])
+
+    // Track which section is in viewport
+    useEffect(() => {
+        if (pathname !== "/") return
+
+        const sections = ["platforms-section", "about-section"]
+        const observerOptions = {
+            root: null,
+            rootMargin: "-20% 0px -70% 0px",
+            threshold: 0
+        }
+
+        const observers: IntersectionObserver[] = []
+
+        sections.forEach((sectionId) => {
+            const element = document.getElementById(sectionId)
+            if (!element) return
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setActiveSection(sectionId)
+                    }
+                })
+            }, observerOptions)
+
+            observer.observe(element)
+            observers.push(observer)
+        })
+
+        // Also check on initial load
+        const checkInitialSection = () => {
+            const scrollPosition = window.scrollY + 200 // Offset for nav height
+            sections.forEach((sectionId) => {
+                const element = document.getElementById(sectionId)
+                if (element) {
+                    const rect = element.getBoundingClientRect()
+                    const elementTop = rect.top + window.scrollY
+                    const elementBottom = elementTop + rect.height
+
+                    if (scrollPosition >= elementTop && scrollPosition < elementBottom) {
+                        setActiveSection(sectionId)
+                    }
+                }
+            })
+        }
+
+        checkInitialSection()
+
+        return () => {
+            observers.forEach((observer) => observer.disconnect())
+        }
+    }, [pathname])
 
     return (
         <div className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
@@ -181,12 +288,20 @@ export function Navigation() {
                         <div className="hidden lg:flex lg:absolute lg:left-1/2 lg:transform lg:-translate-x-1/2 z-10">
                             <div className="flex items-center space-x-4 xl:space-x-8">
                                 {navItems.map((item) => {
-                                    const isActive = pathname === item.href || 
-                                        (item.href.startsWith('#') && pathname === '/')
+                                    let isActive = false
+                                    if (item.href === "/") {
+                                        isActive = pathname === "/" && activeSection === ""
+                                    } else if (item.href.startsWith("#")) {
+                                        const sectionId = item.href.replace("#", "")
+                                        isActive = pathname === "/" && activeSection === sectionId
+                                    } else {
+                                        isActive = pathname === item.href
+                                    }
                                     return (
                                         <a
                                             key={item.name}
                                             href={item.href}
+                                            onClick={item.onClick}
                                             className={`text-xs xl:text-sm font-semibold uppercase transition-colors relative text-white ${
                                                 isActive 
                                                     ? 'text-orange-500 border-b-2 border-orange-500 pb-1' 
@@ -265,18 +380,30 @@ export function Navigation() {
 
                         {/* Navigation Links */}
                             {navItems.map((item) => {
-                                const isActive = pathname === item.href || 
-                                    (item.href.startsWith('#') && pathname === '/')
+                                let isActive = false
+                                if (item.href === "/") {
+                                    isActive = pathname === "/" && activeSection === ""
+                                } else if (item.href.startsWith("#")) {
+                                    const sectionId = item.href.replace("#", "")
+                                    isActive = pathname === "/" && activeSection === sectionId
+                                } else {
+                                    isActive = pathname === item.href
+                                }
                                 return (
                                     <a
                                         key={item.name}
                                         href={item.href}
+                                        onClick={(e) => {
+                                            setIsMenuOpen(false)
+                                            if (item.onClick) {
+                                                item.onClick(e)
+                                            }
+                                        }}
                                     className={`block px-3 py-2 text-sm font-semibold uppercase transition-colors ${
                                             isActive 
                                                 ? 'text-orange-500 bg-orange-500/10 rounded border-l-4 border-orange-500' 
                                                 : 'text-white hover:text-gray-300 hover:bg-white/5'
                                         }`}
-                                        onClick={() => setIsMenuOpen(false)}
                                     >
                                         {item.name}
                                     </a>

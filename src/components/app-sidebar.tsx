@@ -61,7 +61,7 @@ export function AppSidebar() {
           </div>
           <div>
             <h2 className="text-base font-bold text-white">AfyaLink</h2>
-            <p className="text-[10px] text-white/70">Rural Health Records</p>
+            <p className="text-[10px] text-white/70">Health Records</p>
           </div>
         </Link>
       </SidebarHeader>
@@ -161,17 +161,20 @@ export function AppSidebar() {
       <SidebarFooter className="border-t border-zinc-700/50 p-4">
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton 
-              asChild 
-              className="rounded-2xl text-white/70 hover:bg-red-500/20 hover:text-red-400 hover:border-red-500/30 border border-transparent transition-all duration-300"
-            >
-              <Link href="/login" className="gap-3">
-                <div className="w-8 h-8 rounded-xl bg-zinc-800/50 border border-zinc-700/50 flex items-center justify-center">
+            <div className="relative w-full">
+              <div className="absolute -inset-1 bg-gradient-to-r from-red-500 to-red-600 rounded-2xl animate-pulse"></div>
+              <div className="absolute -inset-0.5 bg-zinc-900 rounded-2xl"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-red-500 to-red-600 rounded-2xl opacity-30 blur-sm animate-ping"></div>
+              <SidebarMenuButton 
+                asChild 
+                className="relative w-full rounded-2xl bg-red-500 hover:bg-red-600 text-white font-semibold z-10 transform hover:scale-105 transition-all duration-300 animate-pulse hover:animate-none border-0 shadow-lg shadow-red-500/20"
+              >
+                <Link href="/login" className="gap-3 justify-center">
                   <LogOut className="w-4 h-4" />
-                </div>
-                <span className="font-semibold">Logout</span>
-              </Link>
-            </SidebarMenuButton>
+                  <span>Logout</span>
+                </Link>
+              </SidebarMenuButton>
+            </div>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
