@@ -55,7 +55,7 @@ export function HeroSection() {
 				className={`absolute inset-0 bg-no-repeat transition-transform duration-[4000ms] ease-out border-0 ${hasZoomed ? 'scale-100' : 'scale-[0.85]'
 					}`}
 				style={{
-					backgroundImage: `url('/nurse.jpg')`,
+					backgroundImage: `url('/nurse2.png')`,
 					backgroundPosition: isMobile ? 'right top' : 'right top',
 					backgroundSize: isMobile ? '90% 100%' : '100% 100%',
 					backgroundRepeat: 'no-repeat',
@@ -76,14 +76,13 @@ export function HeroSection() {
 				<div className="max-w-2xl mx-auto sm:mx-0 sm:ml-4 md:ml-6 lg:ml-8 xl:ml-12 2xl:ml-16">
 					<h1 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4 leading-tight text-center sm:text-left">
 						Welcome To AfyaLink{" "} <br />
-						<span className="bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">
+						<span className="inline-block bg-gradient-to-r from-black via-orange-500 to-black bg-clip-text text-transparent bg-[length:200%_auto] animate-[gradient_3s_ease-in-out_infinite]">
 							AI-native solutions that make healthcare simpler
 						</span>
 					</h1>
-{/* 
-					<p className="text-sm xs:text-base sm:text-lg md:text-xl text-gray-300 mb-4 sm:mb-6 leading-relaxed text-center sm:text-left">
-						A Visionary Multimedia Hub in the Home of Legends
-					</p> */}
+					<p className="text-sm xs:text-base sm:text-lg md:text-xl text-gray-400 mb-4 sm:mb-6 leading-relaxed text-center sm:text-left max-w-xl">
+						Empowering health facilities across Africa with secure digital health records, seamless cross-clinic sharing, and intelligent AI-powered insights to improve patient care and healthcare outcomes.
+					</p>
 
 					<div className="flex justify-center sm:justify-start">
 						<div className="relative inline-block">

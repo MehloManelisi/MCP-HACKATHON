@@ -20,7 +20,7 @@ export function PageWrapper({ children, title, description }: PageWrapperProps) 
         </div>
       </header>
 
-      <main className="p-6 max-w-8xl mx-auto">
+      <main className="p-6 max-w-[96rem] mx-auto">
         {children}
       </main>
     </div>

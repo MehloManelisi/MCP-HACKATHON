@@ -186,13 +186,22 @@
 
 /* Sidebar background override to match header */
 [data-sidebar="sidebar"] {
-  background: rgb(24 24 27 / 0.95) !important;
+  background: rgb(24 24 27 / 0.96) !important;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
 
 @supports (backdrop-filter: blur(8px)) {
   [data-sidebar="sidebar"] {
-    background: rgb(24 24 27 / 0.6) !important;
+    background: rgb(24 24 27 / 0.7) !important;
+  }
+}
+
+@keyframes gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
   }
 }
