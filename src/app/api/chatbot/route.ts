@@ -64,7 +64,35 @@ You can directly use tools to help the user with their requests.
 Available resources:
 ${resources.map(r => `- ${r.name}: ${r.description}`).join('\n')}
 
-When the user requests to create a user or perform database operations, use the appropriate tools.`
+Available tools:
+${tools.map(t => `- ${t.name}: ${t.description}`).join('\n')}
+
+When the user requests:
+- To get a user/patient by ID, use the "get-user-by-id" tool with the userId parameter
+- To create a user or perform database operations, use the appropriate tools
+- To generate a report about patients or appointments, use the "generate-report" tool
+- Reports can be generated as: summary (default), detailed, patients, or appointments
+- Example: "Generate a report" or "Show me a detailed report about patients" or "Create a report about appointments"
+
+MEDICAL REPORT GENERATION:
+- To generate a detailed medical report for a specific patient, use "generate-patient-medical-report" tool
+- Provide the patient ID and optionally the format (detailed, summary, or clinical-notes)
+- Example: "Generate a medical report for patient ID 1" or "Create a clinical summary for patient 3"
+- These reports include gender-specific health considerations, HIV status management, and condition-specific clinical notes
+- Reports are professional medical documents suitable for clinical use
+
+PATIENT RESOURCES:
+- Access patient medical reports via "patients://{patientId}/medical-report" resource
+- Filter patients by health criteria using "patients://filter/{filterType}/{filterValue}"
+  - Filter types: hiv-status, gender, medical-condition, blood-type
+  - Example: "patients://filter/hiv-status/Positive" to get all HIV-positive patients
+
+IMPORTANT: When the user wants to SAVE a report to the database:
+- ALWAYS ask for explicit confirmation before using the "save-report" tool
+- The user must confirm they want to save the report
+- Use the save-report tool with confirmSave: true only after getting user confirmation
+- Example: "Would you like to save this report to the database?" and wait for confirmation before saving
+- If the user says "yes", "save it", "confirm", etc., then use save-report with confirmSave: true`
 
     // Initialize Anthropic client
     const apiKey = process.env.ANTHROPIC_API_KEY

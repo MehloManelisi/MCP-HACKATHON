@@ -3,77 +3,231 @@
     "id": 1,
     "name": "Alice Ndlovu",
     "email": "alice.ndlovu@example.com",
-    "address": "123 Main Street, Johannesburg",
-    "phone": "+27 71 234 5678"
+    "address": "123 Main Street, Johannesburg, Gauteng 2000",
+    "phone": "+27 71 234 5678",
+    "dateOfBirth": "1985-03-15",
+    "gender": "Female",
+    "bloodType": "O+",
+    "hivStatus": "Negative",
+    "medicalConditions": ["Hypertension", "Type 2 Diabetes"],
+    "allergies": ["Penicillin", "Sulfa drugs"],
+    "medications": ["Metformin 500mg twice daily", "Amlodipine 10mg daily"],
+    "emergencyContact": {
+      "name": "John Ndlovu",
+      "relationship": "Spouse",
+      "phone": "+27 71 234 5679"
+    },
+    "lastVisit": "2024-10-15",
+    "nextAppointment": "2024-11-20"
   },
   {
     "id": 2,
     "name": "Brian Mthembu",
     "email": "brian.mthembu@example.com",
-    "address": "45 Church Road, Cape Town",
-    "phone": "+27 72 345 6789"
+    "address": "45 Church Road, Cape Town, Western Cape 8001",
+    "phone": "+27 72 345 6789",
+    "dateOfBirth": "1992-07-22",
+    "gender": "Male",
+    "bloodType": "A+",
+    "hivStatus": "Negative",
+    "medicalConditions": ["Asthma"],
+    "allergies": ["Dust mites", "Pollen"],
+    "medications": ["Salbutamol inhaler as needed"],
+    "emergencyContact": {
+      "name": "Sarah Mthembu",
+      "relationship": "Sister",
+      "phone": "+27 72 345 6790"
+    },
+    "lastVisit": "2024-09-28",
+    "nextAppointment": "2024-11-15"
   },
   {
     "id": 3,
     "name": "Lerato Khumalo",
     "email": "lerato.khumalo@example.com",
-    "address": "89 Oxford Street, Durban",
-    "phone": "+27 73 456 7890"
+    "address": "89 Oxford Street, Durban, KwaZulu-Natal 4001",
+    "phone": "+27 73 456 7890",
+    "dateOfBirth": "1978-11-08",
+    "gender": "Female",
+    "bloodType": "B+",
+    "hivStatus": "Positive - On Treatment",
+    "medicalConditions": ["HIV/AIDS", "Tuberculosis (completed treatment)"],
+    "allergies": ["None"],
+    "medications": ["TDF/3TC/EFV (HIV treatment)", "Isoniazid prophylaxis"],
+    "emergencyContact": {
+      "name": "David Khumalo",
+      "relationship": "Brother",
+      "phone": "+27 73 456 7891"
+    },
+    "lastVisit": "2024-10-22",
+    "nextAppointment": "2024-11-18"
   },
   {
     "id": 4,
-    "name": "fdth",
-    "email": "hdr",
-    "address": "drh",
-    "phone": "rdeh"
+    "name": "Thabo Sibeko",
+    "email": "thabo.sibeko@example.com",
+    "address": "22 Mandela Avenue, Soweto, Johannesburg 1808",
+    "phone": "+27 74 567 8901",
+    "dateOfBirth": "1965-05-12",
+    "gender": "Male",
+    "bloodType": "AB+",
+    "hivStatus": "Negative",
+    "medicalConditions": ["Chronic Kidney Disease Stage 3", "Hypertension"],
+    "allergies": ["Iodine contrast"],
+    "medications": ["Lisinopril 20mg daily", "Furosemide 40mg daily"],
+    "emergencyContact": {
+      "name": "Grace Sibeko",
+      "relationship": "Wife",
+      "phone": "+27 74 567 8902"
+    },
+    "lastVisit": "2024-10-05",
+    "nextAppointment": "2024-11-12"
   },
   {
     "id": 5,
-    "name": "Khaya",
-    "email": "khaya@gmail.com",
-    "address": "55",
-    "phone": "0732212661"
+    "name": "Khaya Dlamini",
+    "email": "khaya.dlamini@gmail.com",
+    "address": "55 Freedom Street, Alexandra Township, Johannesburg 2090",
+    "phone": "+27 73 221 2661",
+    "dateOfBirth": "2010-05-20",
+    "gender": "Male",
+    "bloodType": "O-",
+    "hivStatus": "Negative",
+    "medicalConditions": ["Bronchial Asthma"],
+    "allergies": ["Peanuts", "Shellfish"],
+    "medications": ["Budesonide inhaler twice daily"],
+    "emergencyContact": {
+      "name": "Nomsa Dlamini",
+      "relationship": "Mother",
+      "phone": "+27 73 221 2662"
+    },
+    "lastVisit": "2024-10-18",
+    "nextAppointment": "2024-11-25"
   },
   {
     "id": 6,
-    "name": "Lina",
-    "email": "Lina@gmail.com",
-    "address": "55",
-    "phone": "0732212661"
+    "name": "Lina Mokoena",
+    "email": "lina.mokoena@gmail.com",
+    "address": "78 Hope Road, Mamelodi, Pretoria 0122",
+    "phone": "+27 82 445 7788",
+    "dateOfBirth": "1988-09-14",
+    "gender": "Female",
+    "bloodType": "A-",
+    "hivStatus": "Positive - On Treatment",
+    "medicalConditions": ["HIV/AIDS", "Anemia"],
+    "allergies": ["Codeine"],
+    "medications": ["TDF/3TC/DTG (HIV treatment)", "Iron supplements"],
+    "emergencyContact": {
+      "name": "Peter Mokoena",
+      "relationship": "Husband",
+      "phone": "+27 82 445 7789"
+    },
+    "lastVisit": "2024-10-10",
+    "nextAppointment": "2024-11-22"
   },
   {
     "id": 7,
-    "name": "Manez",
-    "email": "manez@gmail.com",
-    "address": "55",
-    "phone": "0732212661"
+    "name": "Manez Zulu",
+    "email": "manez.zulu@gmail.com",
+    "address": "12 Peace Lane, Umlazi, Durban 4031",
+    "phone": "+27 84 667 8899",
+    "dateOfBirth": "1995-12-03",
+    "gender": "Male",
+    "bloodType": "B-",
+    "hivStatus": "Negative",
+    "medicalConditions": ["Epilepsy"],
+    "allergies": ["None"],
+    "medications": ["Carbamazepine 400mg twice daily"],
+    "emergencyContact": {
+      "name": "Zanele Zulu",
+      "relationship": "Mother",
+      "phone": "+27 84 667 8900"
+    },
+    "lastVisit": "2024-09-20",
+    "nextAppointment": "2024-11-28"
   },
   {
     "id": 8,
-    "name": "fjy",
-    "email": "fxyj",
-    "address": "fyj",
-    "phone": "477"
+    "name": "Ntombi Ngubane",
+    "email": "ntombi.ngubane@example.com",
+    "address": "34 Rainbow Circle, Khayelitsha, Cape Town 7784",
+    "phone": "+27 79 888 9999",
+    "dateOfBirth": "1990-02-28",
+    "gender": "Female",
+    "bloodType": "O+",
+    "hivStatus": "Negative",
+    "medicalConditions": ["Hypothyroidism", "Depression"],
+    "allergies": ["Soy"],
+    "medications": ["Levothyroxine 75mcg daily", "Sertraline 50mg daily"],
+    "emergencyContact": {
+      "name": "Sipho Ngubane",
+      "relationship": "Brother",
+      "phone": "+27 79 888 9998"
+    },
+    "lastVisit": "2024-10-25",
+    "nextAppointment": "2024-11-30"
   },
   {
     "id": 9,
-    "name": "tgyi",
-    "email": "tygz",
-    "address": "zy",
-    "phone": "ykz"
+    "name": "Sipho Cele",
+    "email": "sipho.cele@example.com",
+    "address": "56 Sunshine Avenue, Tembisa, Kempton Park 1632",
+    "phone": "+27 81 234 5678",
+    "dateOfBirth": "1983-08-17",
+    "gender": "Male",
+    "bloodType": "A+",
+    "hivStatus": "Positive - On Treatment",
+    "medicalConditions": ["HIV/AIDS", "Hepatitis B"],
+    "allergies": ["None"],
+    "medications": ["TDF/3TC/EFV (HIV treatment)", "Entecavir for Hepatitis B"],
+    "emergencyContact": {
+      "name": "Nomusa Cele",
+      "relationship": "Wife",
+      "phone": "+27 81 234 5679"
+    },
+    "lastVisit": "2024-10-08",
+    "nextAppointment": "2024-11-16"
   },
   {
     "id": 10,
-    "name": "Olwemihla",
-    "email": "olwesaba@gmail.com",
-    "address": "Mputhi A/A",
-    "phone": "dsdsrh"
+    "name": "Olwethu Mabuza",
+    "email": "olwethu.mabuza@gmail.com",
+    "address": "Mputhi A/A, Mthatha, Eastern Cape 5100",
+    "phone": "+27 83 555 4444",
+    "dateOfBirth": "2002-11-30",
+    "gender": "Female",
+    "bloodType": "AB-",
+    "hivStatus": "Negative",
+    "medicalConditions": ["Migraine", "Anxiety"],
+    "allergies": ["Aspirin"],
+    "medications": ["Sumatriptan as needed", "Propranolol 40mg twice daily"],
+    "emergencyContact": {
+      "name": "Bongani Mabuza",
+      "relationship": "Father",
+      "phone": "+27 83 555 4445"
+    },
+    "lastVisit": "2024-09-15",
+    "nextAppointment": "2024-11-20"
   },
   {
     "id": 11,
-    "name": "manez",
-    "email": "mz@gmailcom",
-    "address": "ytgv",
-    "phone": "7890"
+    "name": "Mandla Nxumalo",
+    "email": "mandla.nxumalo@gmail.com",
+    "address": "90 Victory Road, Soshanguve, Pretoria 0152",
+    "phone": "+27 76 789 0123",
+    "dateOfBirth": "1976-04-25",
+    "gender": "Male",
+    "bloodType": "O+",
+    "hivStatus": "Negative",
+    "medicalConditions": ["Type 2 Diabetes", "Diabetic Neuropathy"],
+    "allergies": ["Sulfonamides"],
+    "medications": ["Insulin glargine 20 units at bedtime", "Metformin 1000mg twice daily", "Gabapentin 300mg three times daily"],
+    "emergencyContact": {
+      "name": "Thandi Nxumalo",
+      "relationship": "Wife",
+      "phone": "+27 76 789 0124"
+    },
+    "lastVisit": "2024-10-12",
+    "nextAppointment": "2024-11-14"
   }
 ]

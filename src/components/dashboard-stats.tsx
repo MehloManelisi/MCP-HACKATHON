@@ -1,40 +1,68 @@
 import { Card } from "../components/ui/card"
 import { Users, Activity, Calendar, TrendingUp } from "lucide-react"
 
-export function DashboardStats() {
+interface DashboardStatsProps {
+  totalPatients: {
+    value: string
+    change: string
+    trend: "up" | "down"
+  }
+  visitsToday: {
+    value: string
+    change: string
+    trend: "up" | "down"
+  }
+  appointments: {
+    value: string
+    change: string
+    trend: "up" | "down"
+  }
+  activeCases: {
+    value: string
+    change: string
+    trend: "up" | "down"
+  }
+}
+
+export function DashboardStats({
+  totalPatients,
+  visitsToday,
+  appointments,
+  activeCases,
+}: DashboardStatsProps) {
   const stats = [
     {
       label: "Total Patients",
-      value: "1,234",
-      change: "+12%",
-      trend: "up",
+      value: totalPatients.value,
+      change: totalPatients.change,
+      trend: totalPatients.trend,
       icon: Users,
       color: "text-[#10b981]",
       bgColor: "bg-[#10b981]/10",
     },
     {
       label: "Visits Today",
-      value: "23",
-      change: "+5%",
-      trend: "up",
+      value: visitsToday.value,
+      change: visitsToday.change,
+      trend: visitsToday.trend,
       icon: Activity,
       color: "text-[#3b82f6]",
       bgColor: "bg-[#3b82f6]/10",
     },
     {
       label: "Appointments",
-      value: "18",
-      change: "-3%",
-      trend: "down",
+      value: appointments.value,
+      change: appointments.change,
+      trend: appointments.trend,
       icon: Calendar,
       color: "text-[#f97316]",
       bgColor: "bg-[#f97316]/10",
     },
     {
       label: "Active Cases",
-      value: "156",
-      change: "+8%",
-      trend: "up",
+      value: activeCases.value,
+      change: activeCases.change,
+      trend: activeCases.trend,
       icon: TrendingUp,
       color: "text-[#8b5cf6]",
       bgColor: "bg-[#8b5cf6]/10",
