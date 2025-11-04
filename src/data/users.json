@@ -322,5 +322,76 @@
     "email": "sarah.johnson@email.com",
     "address": "123 Maple Street, Springfield, IL 62701",
     "phone": "(555) 123-4567"
+  },
+  {
+    "id": 13,
+    "name": "Sarah Johnson",
+    "email": "sarah.johnson@email.com",
+    "address": "1234 Maple Street, Springfield, IL 62701",
+    "phone": "555-123-4567"
+  },
+  {
+    "id": 14,
+    "name": "Michael Rodriguez",
+    "email": "michael.rodriguez@email.com",
+    "address": "567 Oak Avenue, Austin, TX 78701",
+    "phone": "555-987-6543"
+  },
+  {
+    "id": 15,
+    "name": "Emily Chen",
+    "email": "emily.chen@email.com",
+    "address": "789 Pine Street, Los Angeles, CA 90210",
+    "phone": "+27-555-456-7890",
+    "dateOfBirth": "1985-03-15",
+    "gender": "Female",
+    "bloodType": "A+",
+    "hivStatus": "Negative",
+    "medicalConditions": [
+      "Hypertension",
+      "Type 2 Diabetes"
+    ],
+    "allergies": [
+      "Penicillin",
+      "Shellfish"
+    ],
+    "medications": [
+      "Metformin 500mg twice daily",
+      "Lisinopril 10mg once daily"
+    ],
+    "emergencyContact": {
+      "name": "David Chen",
+      "relationship": "Spouse",
+      "phone": "+27-555-789-0123"
+    },
+    "lastVisit": "2024-01-15",
+    "nextAppointment": "2024-02-15"
+  },
+  {
+    "id": 16,
+    "name": "Brian Tandikhaya Mbana",
+    "email": "btmbana@gmail.com",
+    "address": "Colosa AA",
+    "phone": "+27732212661",
+    "dateOfBirth": "2025-11-21",
+    "gender": "Male",
+    "bloodType": "AB+",
+    "hivStatus": "Negative",
+    "medicalConditions": [
+      "rsytnfgz"
+    ],
+    "allergies": [
+      "rtngf"
+    ],
+    "medications": [
+      "artnfg"
+    ],
+    "emergencyContact": {
+      "name": "Brian Tandikhaya Mbana",
+      "relationship": "trn",
+      "phone": "+27732212661"
+    },
+    "lastVisit": "2025-11-15",
+    "nextAppointment": "2025-11-27"
   }
 ]

@@ -497,13 +497,27 @@ ${user.nextAppointment ? `Next Appointment: ${new Date(user.nextAppointment).toL
     }
 })
 
-server.tool("create-user", "Create a new user in the database", {
-    name: z.string(),
-    email: z.string(),
-    address: z.string(),
-    phone: z.string(),
+server.tool("create-user", "Create a new patient in the database with complete health information. All fields except name, email, address, and phone are optional, but should be provided when available.", {
+    name: z.string().describe("Patient's full name"),
+    email: z.string().describe("Patient's email address"),
+    address: z.string().describe("Patient's full address"),
+    phone: z.string().describe("Patient's phone number in +27 format"),
+    dateOfBirth: z.string().optional().describe("Date of birth in YYYY-MM-DD format"),
+    gender: z.enum(["Male", "Female"]).optional().describe("Patient's gender"),
+    bloodType: z.enum(["O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-"]).optional().describe("Patient's blood type"),
+    hivStatus: z.string().optional().describe("HIV status: 'Negative', 'Positive', or 'Positive - On Treatment'"),
+    medicalConditions: z.array(z.string()).optional().describe("Array of medical conditions (e.g., ['Hypertension', 'Diabetes'])"),
+    allergies: z.array(z.string()).optional().describe("Array of allergies (e.g., ['Penicillin'] or ['None'])"),
+    medications: z.array(z.string()).optional().describe("Array of medications with dosages (e.g., ['Metformin 500mg twice daily'])"),
+    emergencyContact: z.object({
+        name: z.string(),
+        relationship: z.string(),
+        phone: z.string()
+    }).optional().describe("Emergency contact information"),
+    lastVisit: z.string().optional().describe("Last visit date in YYYY-MM-DD format"),
+    nextAppointment: z.string().optional().describe("Next appointment date in YYYY-MM-DD format"),
 }, {
-    title: "Create a new user",
+    title: "Create a new patient",
     readOnlyHint: false,
     destructiveHint: false,
     idempotentHint: false,
@@ -511,22 +525,72 @@ server.tool("create-user", "Create a new user in the database", {
 }, async (params) => {
     try {
         const id = await createUser(params)
+        
+        // Format comprehensive response
+        const responseText = `✅ PATIENT CREATED SUCCESSFULLY
+═══════════════════════════════════════════════════════════════
+
+BASIC INFORMATION:
+───────────────────────────────────────────────────────────────
+Patient ID: ${id}
+Name: ${params.name}
+Email: ${params.email}
+Phone: ${params.phone}
+Address: ${params.address}
+
+${params.dateOfBirth ? `Date of Birth: ${params.dateOfBirth}
+Gender: ${params.gender || 'Not specified'}` : ''}
+
+${params.bloodType || params.hivStatus ? `HEALTH INFORMATION:
+───────────────────────────────────────────────────────────────
+${params.bloodType ? `Blood Type: ${params.bloodType}` : ''}
+${params.hivStatus ? `HIV Status: ${params.hivStatus}` : ''}` : ''}
+
+${params.medicalConditions && params.medicalConditions.length > 0 ? `MEDICAL CONDITIONS:
+───────────────────────────────────────────────────────────────
+${params.medicalConditions.map(cond => `• ${cond}`).join('\n')}` : ''}
+
+${params.allergies && params.allergies.length > 0 ? `ALLERGIES:
+───────────────────────────────────────────────────────────────
+${params.allergies.filter(a => a !== 'None').length > 0 
+  ? params.allergies.filter(a => a !== 'None').map(allergy => `⚠️ ${allergy}`).join('\n')
+  : 'None'}` : ''}
+
+${params.medications && params.medications.length > 0 ? `MEDICATIONS:
+───────────────────────────────────────────────────────────────
+${params.medications.map(med => `• ${med}`).join('\n')}` : ''}
+
+${params.emergencyContact ? `EMERGENCY CONTACT:
+───────────────────────────────────────────────────────────────
+Name: ${params.emergencyContact.name}
+Relationship: ${params.emergencyContact.relationship}
+Phone: ${params.emergencyContact.phone}` : ''}
+
+${params.lastVisit || params.nextAppointment ? `VISIT INFORMATION:
+───────────────────────────────────────────────────────────────
+${params.lastVisit ? `Last Visit: ${new Date(params.lastVisit).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}` : ''}
+${params.nextAppointment ? `Next Appointment: ${new Date(params.nextAppointment).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}` : ''}` : ''}
+
+═══════════════════════════════════════════════════════════════
+Patient has been saved to the database.`;
+        
         return {
             content: [
-                { type: "text", text: `User ${id} created successfully` }
+                { type: "text", text: responseText }
             ]
         }
-    } catch {
+    } catch (error) {
+        console.error("Error creating user:", error)
         return {
             content: [
-                { type: "text", text: "Failed to save user" }
+                { type: "text", text: `Failed to save patient: ${error instanceof Error ? error.message : 'Unknown error'}` }
             ]
         }
     }
 })
 
-server.tool("create-random-user", "Create a random user with fake data", {
-    title: "Create Random user",
+server.tool("create-random-user", "Generate a random patient with complete health data including demographics, medical conditions, allergies, medications, HIV status, and emergency contact. The AI will generate realistic patient data that matches the structure of users in the database.", {
+    title: "Create Random Patient with Full Health Data",
     readOnlyHint: false,
     destructiveHint: false,
     idempotentHint: false,
@@ -541,11 +605,44 @@ server.tool("create-random-user", "Create a random user with fake data", {
               role: "user",
               content: {
                 type: "text",
-                text: "Generate a random user with fake data. The user should have a realistic name, email, address, and phone number. Return ONLY valid JSON with no markdown or formatting.",
+                text: `You are a healthcare professional generating a realistic patient record for a South African clinic. Generate a COMPLETE patient record with ALL required fields. Return ONLY valid JSON with no markdown, no code blocks, no explanations - just the raw JSON object.
+
+CRITICAL: You MUST include ALL of these fields in your JSON response:
+
+{
+  "name": "Full South African name (e.g., Thabo Mthembu, Lerato Ndlovu)",
+  "email": "realistic email address",
+  "address": "Full South African address (e.g., '123 Main Street, Johannesburg, Gauteng 2000')",
+  "phone": "+27 XX XXX XXXX format",
+  "dateOfBirth": "YYYY-MM-DD (choose a realistic birth date between 1950 and 2010)",
+  "gender": "Male" or "Female",
+  "bloodType": "O+", "O-", "A+", "A-", "B+", "B-", "AB+", or "AB-",
+  "hivStatus": "Negative", "Positive", or "Positive - On Treatment",
+  "medicalConditions": ["array of 1-3 conditions like 'Hypertension', 'Type 2 Diabetes', 'Asthma', 'HIV/AIDS', 'Tuberculosis'"],
+  "allergies": ["array like ['Penicillin'] or ['None'] if no allergies"],
+  "medications": ["array of 1-3 medications with dosages like 'Metformin 500mg twice daily'"],
+  "emergencyContact": {
+    "name": "Full name",
+    "relationship": "Spouse", "Brother", "Sister", "Parent", or "Friend",
+    "phone": "+27 XX XXX XXXX format"
+  },
+  "lastVisit": "YYYY-MM-DD (recent past date within last 6 months)",
+  "nextAppointment": "YYYY-MM-DD (future date)"
+}
+
+IMPORTANT RULES:
+1. Return ONLY the JSON object, no markdown, no code blocks, no backticks
+2. Include ALL fields listed above - do not skip any
+3. Use realistic South African names and addresses
+4. Medical conditions and medications should be realistic and match each other
+5. If HIV status is "Positive" or "Positive - On Treatment", include HIV-related medications
+6. Dates must be in YYYY-MM-DD format
+
+Return the JSON now:`,
               },
             },
           ],
-          maxTokens: 1024,
+          maxTokens: 2048,
         },
       },
       CreateMessageResultSchema
@@ -564,23 +661,90 @@ server.tool("create-random-user", "Create a random user with fake data", {
   
       const fakeUser = JSON.parse(cleaned);
       
-      // Transform nested address to flat string if needed
-      const transformedUser = {
-        name: fakeUser.name,
-        email: fakeUser.email,
+      // Validate and transform the user data
+      const transformedUser: any = {
+        name: fakeUser.name || "Unknown User",
+        email: fakeUser.email || "unknown@example.com",
         address: typeof fakeUser.address === 'string' 
           ? fakeUser.address 
-          : fakeUser.address.street || '',
-        phone: fakeUser.phone
+          : (fakeUser.address?.street || fakeUser.address || ''),
+        phone: fakeUser.phone || "+27 00 000 0000",
+        dateOfBirth: fakeUser.dateOfBirth,
+        gender: fakeUser.gender,
+        bloodType: fakeUser.bloodType,
+        hivStatus: fakeUser.hivStatus,
+        medicalConditions: Array.isArray(fakeUser.medicalConditions) ? fakeUser.medicalConditions : [],
+        allergies: Array.isArray(fakeUser.allergies) ? fakeUser.allergies : ["None"],
+        medications: Array.isArray(fakeUser.medications) ? fakeUser.medications : [],
+        emergencyContact: fakeUser.emergencyContact || {
+          name: "Emergency Contact",
+          relationship: "Friend",
+          phone: "+27 00 000 0000"
+        },
+        lastVisit: fakeUser.lastVisit,
+        nextAppointment: fakeUser.nextAppointment
       };
       
       const id = await createUser(transformedUser);
   
-      return { content: [{ type: "text", text: `User ${id} created successfully` }] };
+      // Format comprehensive response
+      const responseText = `✅ PATIENT CREATED SUCCESSFULLY
+═══════════════════════════════════════════════════════════════
+
+BASIC INFORMATION:
+───────────────────────────────────────────────────────────────
+Patient ID: ${id}
+Name: ${transformedUser.name}
+Email: ${transformedUser.email}
+Phone: ${transformedUser.phone}
+Address: ${transformedUser.address}
+
+${transformedUser.dateOfBirth ? `Date of Birth: ${transformedUser.dateOfBirth}
+Gender: ${transformedUser.gender || 'Not specified'}` : ''}
+
+${transformedUser.bloodType || transformedUser.hivStatus ? `HEALTH INFORMATION:
+───────────────────────────────────────────────────────────────
+${transformedUser.bloodType ? `Blood Type: ${transformedUser.bloodType}` : ''}
+${transformedUser.hivStatus ? `HIV Status: ${transformedUser.hivStatus}` : ''}` : ''}
+
+${transformedUser.medicalConditions && transformedUser.medicalConditions.length > 0 ? `MEDICAL CONDITIONS:
+───────────────────────────────────────────────────────────────
+${transformedUser.medicalConditions.map((cond: string) => `• ${cond}`).join('\n')}` : ''}
+
+${transformedUser.allergies && transformedUser.allergies.length > 0 ? `ALLERGIES:
+───────────────────────────────────────────────────────────────
+${transformedUser.allergies.filter((a: string) => a !== 'None').length > 0 
+  ? transformedUser.allergies.filter((a: string) => a !== 'None').map((allergy: string) => `⚠️ ${allergy}`).join('\n')
+  : 'None'}` : ''}
+
+${transformedUser.medications && transformedUser.medications.length > 0 ? `MEDICATIONS:
+───────────────────────────────────────────────────────────────
+${transformedUser.medications.map((med: string) => `• ${med}`).join('\n')}` : ''}
+
+${transformedUser.emergencyContact ? `EMERGENCY CONTACT:
+───────────────────────────────────────────────────────────────
+Name: ${transformedUser.emergencyContact.name}
+Relationship: ${transformedUser.emergencyContact.relationship}
+Phone: ${transformedUser.emergencyContact.phone}` : ''}
+
+${transformedUser.lastVisit || transformedUser.nextAppointment ? `VISIT INFORMATION:
+───────────────────────────────────────────────────────────────
+${transformedUser.lastVisit ? `Last Visit: ${new Date(transformedUser.lastVisit).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}` : ''}
+${transformedUser.nextAppointment ? `Next Appointment: ${new Date(transformedUser.nextAppointment).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}` : ''}` : ''}
+
+═══════════════════════════════════════════════════════════════
+Patient has been saved to the database with all health information.`;
+  
+      return { 
+        content: [{ 
+          type: "text", 
+          text: responseText
+        }] 
+      };
     } catch (err) {
       console.error("Failed to parse fake user data:", err);
       return {
-        content: [{ type: "text", text: "Failed to parse fake user data" }],
+        content: [{ type: "text", text: `Failed to parse fake user data: ${err instanceof Error ? err.message : 'Unknown error'}` }],
       };
     }
   });

@@ -69,7 +69,13 @@ ${tools.map(t => `- ${t.name}: ${t.description}`).join('\n')}
 
 When the user requests:
 - To get a user/patient by ID, use the "get-user-by-id" tool with the userId parameter
-- To create a user or perform database operations, use the appropriate tools
+- To create a random patient with complete health data (including demographics, medical conditions, allergies, medications, HIV status, emergency contact), use the "create-random-user" tool. This tool will use AI to generate realistic patient data with all required fields.
+- To create a patient manually, use the "create-user" tool. 
+  CRITICAL: The database expects patients with comprehensive health information. When creating a patient, you MUST include health data:
+  * Required fields: name, email, address, phone
+  * Health fields that should be included: dateOfBirth, gender, bloodType, hivStatus, medicalConditions (array), allergies (array), medications (array), emergencyContact (object with name, relationship, phone), lastVisit, nextAppointment
+  * If the user doesn't specify health information, you should generate realistic health data yourself (blood type, common medical conditions, etc.) rather than leaving fields empty
+  * Always create complete patient records with health information - this is a healthcare system, not just a contact list
 - To generate a report about patients or appointments, use the "generate-report" tool
 - Reports can be generated as: summary (default), detailed, patients, or appointments
 - Example: "Generate a report" or "Show me a detailed report about patients" or "Create a report about appointments"
