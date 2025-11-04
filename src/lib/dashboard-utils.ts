@@ -25,14 +25,18 @@ interface User {
 }
 
 /**
- * Gets the last N recently added patients from the users data
+ * Gets the last N recently added patients using LIFO (Last In, First Out)
+ * Newest patients (highest ID) appear first
  * @param limit - Number of patients to return (default: 4)
- * @returns Array of patients sorted by ID (highest = most recent)
+ * @returns Array of patients sorted by ID descending (most recent first)
  */
 export function getRecentlyAddedPatients(limit: number = 4): User[] {
-  return (usersData as User[])
-    .sort((a, b) => b.id - a.id)
-    .slice(0, limit)
+  // Sort by ID descending (highest ID = most recently added = first out)
+  // This implements LIFO: Last In, First Out
+  const sortedPatients = [...(usersData as User[])].sort((a, b) => b.id - a.id)
+  
+  // Return the first N patients (most recent)
+  return sortedPatients.slice(0, limit)
 }
 
 /**
