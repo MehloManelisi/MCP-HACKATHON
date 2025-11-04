@@ -1,7 +1,7 @@
 import { Client } from "@modelcontextprotocol/sdk/client/index.js"
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js"
 import { input, select } from "@inquirer/prompts"
-import { Prompt, PromptMessage, Tool } from "@modelcontextprotocol/sdk/types.js"
+import { CreateMessageRequestSchema, Prompt, PromptMessage, Tool } from "@modelcontextprotocol/sdk/types.js"
 import { Anthropic } from "@anthropic-ai/sdk"
 import dotenv from "dotenv"
 import { resolve } from "node:path"
@@ -41,6 +41,24 @@ async function main() {
         mcp.listResources(),
         mcp.listResourceTemplates(),
     ])
+
+    mcp.setRequestHandler(CreateMessageRequestSchema, async request => {
+        const texts: string[] = []
+        for (const message of request.params.messages){
+            const text = await handleServerMessagePrompt(message)
+            if (text != null) texts.push(text)
+        }
+
+        return {
+            role: "user",
+            model: "claude-sonnet-4-5-20250929",
+            stopReason: "endTurn",
+            content: {
+                type: "text",
+                text: texts.join("\n")
+            }
+        }
+    })
     console.log("You are connected")
     while (true) {
         const option = await select({
@@ -102,7 +120,52 @@ async function main() {
                     await handlePrompt(prompt)
                 }
                 break
+            case "Query":
+                await handleQuery(tools)
+                break
+            }
+    }
+}
+
+async function handleQuery(tools: Tool[]) {
+    const query = await input({message: "Enter a query"})
+
+    const anthropicTools = tools.map(tool => ({
+        name: tool.name,
+        description: tool.description,
+        input_schema: tool.inputSchema
+    }))
+
+    const messages: any[] = [{ role: "user", content: query }]
+
+    while (true) {
+        const response = await anthropic.messages.create({
+            model: "claude-sonnet-4-5-20250929",
+            max_tokens: 1024,
+            tools: anthropicTools,
+            messages,
+        })
+
+        for (const content of response.content) {
+            if (content.type === "text") {
+                console.log("\n📝 Claude:", content.text)
+                messages.push({ role: "assistant", content: content.text })
+            } else if (content.type === "tool_use") {
+                console.log(`\n🔧 Tool call: ${content.name}`)
+                const toolResult = await mcp.callTool({
+                    name: content.name,
+                    arguments: content.input as Record<string, unknown>,
+                })
+                const resultText = (toolResult.content as any)[0]?.type === "text" 
+                    ? (toolResult.content as any)[0].text 
+                    : JSON.stringify(toolResult.content)
+                console.log("Result:", resultText)
+                messages.push({ role: "assistant", content: [content] })
+                messages.push({ role: "user", content: [{ type: "tool_result", tool_use_id: content.id, content: resultText }] })
+            }
         }
+
+        if (response.stop_reason !== "tool_use") break
     }
 }
 

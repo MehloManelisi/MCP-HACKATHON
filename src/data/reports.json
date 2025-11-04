@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1762273611036,
+    "reportType": "summary",
+    "generatedAt": "2025-11-04T16:26:51.036Z",
+    "content": "📊 CLINIC REPORT - SUMMARY\nGenerated on: Tuesday, November 4, 2025\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n📋 KEY STATISTICS:\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n👥 Total Patients: 11\n   • All registered patients in the system\n\n📅 Scheduled Appointments: 1\n   • Currently scheduled upcoming appointments\n\n🏥 Visits Today: 0\n   • Patient visits scheduled for today\n\n🔄 Active Cases: 3\n   • Patients with recent activity (last 30 days)\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n📈 SUMMARY:\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nYour clinic currently manages 11 patients with 1 scheduled appointment. \nToday, there are 0 visits scheduled, and 3 active cases requiring ongoing attention.\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+    "statistics": {
+      "totalPatients": 11,
+      "totalAppointments": 1,
+      "visitsToday": 0,
+      "activeCases": 3
+    }
+  }
+]
