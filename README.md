@@ -20,8 +20,8 @@ AfyaLink is an AI-powered health records management system designed specifically
 - **Frontend**: Next.js 16, React 19, TypeScript
 - **Backend** Node.js, TypeScript
 - **Styling**: Tailwind CSS v4 with custom African-inspired color palette
-- **Database**: Supabase (PostgreSQL) - ready to connect
 - **AI Integration**: Model Context Protocol (MCP) pattern
+- **Database: Local file that acts as a database. (src/Data)
 
 ## Getting Started
 
@@ -47,14 +47,14 @@ AfyaLink is an AI-powered health records management system designed specifically
 
 4. Open [http://localhost:3000](http://localhost:3000)
 
-
+##API keys:
+AUTH_SECRET="adSQVI4xyH/D5ScaZ4qEBllDQH/Q4gAqt6nr95UrW7M=" # Added by `npx auth`. Read more: https://cli.authjs.dev
+ANTHROPIC_API_KEY=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
 ## MCP Integration
+MCP server location: src/server
+MCP client: src/client
 
-AfyaLink uses the Model Context Protocol pattern for AI health summaries:
 
-1. **Client**: `src/lib/mcp-client.ts` - Handles MCP communication
-2. **API Route**: `src/app/api/ai-summary/route.ts` - Server endpoint
-3. **Component**: `src/components/ai-summary-card.tsx` - UI for summaries
 
 The MCP pattern allows for:
 - Structured health data analysis
